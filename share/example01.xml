@@ -1,0 +1,52 @@
+<wizard logo="cgs.png">
+    <textpage title="First example" subtitle="don't be scared">
+        <![CDATA[Welcome to the first example of <i>msml-wizard</i>.
+
+This example demonstrates a various amount of functions.
+blabla....
+
+        ]]>
+    </textpage>
+
+    <formpage title="First example" subtitle="Please enter some details of the patient.">
+        <radio name="age" label="Age:">
+            <option label="0-20"   value="1" />
+            <option label="21-30"  value="2" />
+            <option label="30-40"  value="3" />
+            <option label="41-60"   value="3" />
+            <option label="60+"     value="3" />
+        </radio>
+
+        <content>
+            The age determines some coefficients of the simulations, like ...
+        </content>
+
+        <checkbox name="fav" label="ice cream">
+            <option label="vanilla"  value="1" />
+            <option label="choc" value="2" />
+            <option label="mint"    value="3" />
+        </checkbox>
+
+        <select name="slct" label="How much finger on one Hand?" values="1|2|3|4|5"/>
+    </formpage>
+
+    <formpage title="First example" subtitle="Please choose the patient computer data.">
+        <file label="Mesh File:"
+              name="mesh" value="share"
+              pattern="Mesh Files (*.vtk *.vtu *.vti)" multiple="false" />
+
+        <content>
+            The mesh file, ...
+        </content>
+
+
+    </formpage>
+
+
+    <textpage title="It's time..." subtitle="... to say goodbye">
+        <![CDATA[
+        <b>Bye</b> <i>Byte</i>
+        ]]>
+    </textpage>
+
+</wizard>

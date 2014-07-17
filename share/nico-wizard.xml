@@ -1,0 +1,107 @@
+<wizard logo="cgs.png">
+    <textpage title="" subtitle="">
+        <![CDATA[
+                 <b>Introduction</b><br />
+                 ...
+        ]]>
+    </textpage>
+
+    <formpage title="" subtitle="">
+        <spinbox name="patientid"
+                 label="Which patient will you operate on?" />
+
+        <radio label="Which organ will you operate on?"
+               name="organ"
+               values="liver|heart|aorta" />
+
+        <file name="segmentedorgan" label="Segmented organ" />
+
+        <spinbox label="Which accuracy [in mm] do you require the simulation to satisfy?"
+                min="1" max="1000" step="10"
+                suffix=" mm"
+                name="accuracy" />
+    </formpage>
+
+    <formpage title="" subtitle="Liver settings"
+              enabled="self.field('organ_liver').toBool()">
+        <content>Please specify this only if you operate on liver</content>
+
+        <radio label="Are the deformations caused by your surgical manipulation rather large?"
+               values="yes|no"
+               name="size_of_manipulation"
+               />
+        <checkbox label="Use literature bases properties of liver?"
+               values="yes"  name="liver_literature" />
+
+        <slider
+            enabled="not self.field('liver_literature_yes').toBool()"
+            label="Please give material properties of your choice!"
+            min="0"  max="100" step="1"
+            name="liver_emodule" />
+
+        <slider
+            enabled="not self.field('liver_literature_yes').toBool()"
+            label="Please give material parameter 'Poisson Ratio'"
+            min="0"  max="100" step="1" name="liver_poissonratio"  />
+
+        <checkbox
+            label="Do you want to consider uncertainties with
+                   maths-based methods of Uncertainty Quantification (UQ)?"
+            values="yes"
+            name="aaa" />
+
+        <textfield
+            label="Which parameters do you assume to be subject to uncertainties
+                   or prone to errors?"
+            name="blablubb" />
+
+        <checkbox label="Will cutting processes be part of your liver operation?"
+               name="cutprocess"
+               values="yes" />
+
+    </formpage>
+
+    <formpage title="" subtitle="Heart settings"
+              enabled="self.field('organ_heart').toBool()">
+
+        <content>
+            Please specify your settings for the heart operation.
+        </content>
+
+        <radio label="Are the deformations caused by your surgical manipulation rather large?"
+               name="deformlarge"
+               values="yes|no"/>
+
+        <content enable="{{deformlarge}} == 'yes'">
+            The heart (mitral valve) simulation will be set up using literature-based
+            mean material properties of a heart's valve leaflets.
+        </content>
+
+        <slider
+            label="Please give material properties of your choice!"
+            min="0"  max="100" step="1"
+            name="emodule" />
+
+        <slider label="Please give material parameter 'Poisson Ratio'"
+                min="0"  max="100" step="1" name="poissonratio"  />
+
+        <radio label="Which parameter do you want to set as the optimization goal? Size of Coaptation or Ring stress?" name="goal" values="yes|no" />
+
+        <content>Size of Coaptation:</content>
+        <content>elseif Ring stress:</content>
+
+        <radio label="Do you want to consider uncertainties with maths-based methods of Uncertainty Quantification (UQ)?"
+               name="aaaa" values="yes|no"  />
+
+        <textfield label="Which parameters do you assume to be subject to uncertainties or prone to errors?" name="ab" />
+
+   <radio label="Do you want to consider different MV-reconstruction scenarios"
+          name="alala"
+          values="yes|no" />
+
+
+   <textfield label="You may vary the shape of the implanted AnnulusRing.
+                     Therefore, please choose a set of ring types."
+              name="all" enable="{{alala}} == 'yes'" />
+    </formpage>
+</wizard>

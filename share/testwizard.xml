@@ -1,0 +1,40 @@
+<wizard watermark="igel.jpg" banner="igel.jpg" logo="igel2.jpg">
+    <htmlpage title="This is the First page" subtitle="this makes no sense">
+        <![CDATA[
+        Welcome to your friendly wizard system.
+        <b>Here can stand HTML and even more.</b>
+        ]]>
+    </htmlpage>
+
+    <formpage title="Just the second page" subtitle="where is the sense, where!">
+
+        <textfield name="first" value="Alexander" label="Firstname:" />
+
+        <textfield name="last" value="Weigl" label="Lastname:" />
+
+        <radio name="gender" label="Gender:">
+            <option label="small"  value="1" />
+            <option label="medium" value="2" />
+            <option label="big"    value="3" />
+        </radio>
+
+        <checkbox name="fav" label="ice cream">
+            <option label="vanilla"  value="1" />
+            <option label="choc" value="2" />
+            <option label="mint"    value="3" />
+        </checkbox>
+
+        <select name="slct" label="How much finger on one Hand?" values="1|2|3|4|5"/>
+
+        <content>
+            This is could be a help text.
+        </content>
+
+    </formpage>
+    <textpage title="It's time..." subtitle="... to say goodbye">
+        <![CDATA[
+        <b>Bye</b> <i>Byte</i>
+        ]]>
+    </textpage>
+
+</wizard>
