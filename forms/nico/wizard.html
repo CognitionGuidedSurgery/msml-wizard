@@ -1,0 +1,108 @@
+{% extends "wizard.html" %}
+
+{% block content %}
+<form class="wizard" role="form">
+    {{begin_page()}}
+    <b>Introduction</b><br/>
+    {{end_page()}}
+
+    <div class="page">
+        {{wizard_input("Which patient will you operate on?", "patientid", "number")}}
+
+        {{wizard_radio("Which organ will you operate on?", "organ", ["liver", "heart", "aorta"])}}
+
+        {{wizard_file("Segmented organ", "segmented_organ")}}
+
+        {{wizard_spinner("Which accuracy [in mm] do you require the simulation to satisfy?",
+        "accuracy",1, 1000, 10, " mm") }}
+    </div>
+
+    <div class="page">
+        enabled="self.field('organ_liver').toBool()">
+        <div class="form-group">Please specify this only if you operate on liver</div>
+
+        {{wizard_radio("Are the deformations caused by your surgical manipulation rather large?",
+                    "size_of_manipulation", ["yes", "no"])}}
+
+
+        <div class="form-group">
+            <label>
+                <input type="checkbox" value="yes" name="liver_literature" >
+                    Use literature bases properties of liver?</label>
+        </div>
+
+
+        enabled="not self.field('liver_literature_yes').toBool()"
+
+        {{wizard_spinner("Please give material properties of your choice!",
+                           "liver_emodule", 0, 100, 1) }}
+
+        {{wizard_spinner(
+                enabled="not self.field('liver_literature_yes').toBool()"
+                label="Please give material parameter 'Poisson Ratio'"
+                min="0" max="100" step="1" name="liver_poissonratio"/>
+
+        <checkbox
+                label="Do you want to consider uncertainties with
+                   maths-based methods of Uncertainty Quantification (UQ)?"
+                values="yes"
+                name="aaa"/>
+
+        <textfield
+                label="Which parameters do you assume to be subject to uncertainties
+                   or prone to errors?"
+                name="blablubb"/>
+
+        <checkbox label="Will cutting processes be part of your liver operation?"
+                  name="cutprocess"
+                  values="yes"/>
+
+    </div>
+
+    <div title="" subtitle="Heart settings"
+              enabled="self.field('organ_heart').toBool()">
+
+        <content>
+            Please specify your settings for the heart operation.
+        </content>
+
+        <radio label="Are the deformations caused by your surgical manipulation rather large?"
+               name="deformlarge"
+               values="yes|no"/>
+
+        <content enable="{{deformlarge}} == 'yes'">
+            The heart (mitral valve) simulation will be set up using literature-based
+            mean material properties of a heart's valve leaflets.
+        </content>
+
+        <slider
+                label="Please give material properties of your choice!"
+                min="0" max="100" step="1"
+                name="emodule"/>
+
+        <slider label="Please give material parameter 'Poisson Ratio'"
+                min="0" max="100" step="1" name="poissonratio"/>
+
+        <radio label="Which parameter do you want to set as the optimization goal? Size of Coaptation or Ring stress?"
+               name="goal" values="yes|no"/>
+
+        <content>Size of Coaptation:</content>
+        <content>elseif Ring stress:</content>
+
+        <radio label="Do you want to consider uncertainties with maths-based methods of Uncertainty Quantification (UQ)?"
+               name="aaaa" values="yes|no"/>
+
+        <textfield label="Which parameters do you assume to be subject to uncertainties or prone to errors?"
+                   name="ab"/>
+
+        <radio label="Do you want to consider different MV-reconstruction scenarios"
+               name="alala"
+               values="yes|no"/>
+
+
+        <textfield label="You may vary the shape of the implanted AnnulusRing.
+                     Therefore, please choose a set of ring types."
+                   name="all" enable="{{alala}} == 'yes'"/>
+    </div>
+</form>
+{% endblock %}

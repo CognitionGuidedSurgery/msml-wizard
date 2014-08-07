@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Choose your wizard:</h1>
+
+  <ul class="wizard-overview">
+      {% for wz in repository %}
+      <li><a href="{{url_for("wizard", name=wz.key)}}">{{wz.name}} ({{wz.version}})</a></li>
+      {% endfor %}
+  </ul>
+
+{% endblock %}
