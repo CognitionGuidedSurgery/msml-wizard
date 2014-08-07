@@ -1,0 +1,9 @@
+flask
+flask-restful
+flask-restful-swagger
+Flask-WTForms
+Flask-Bootstrap
+gunicorn
+path.py
+BeautifulSoup
+Flask-DebugToolbar
