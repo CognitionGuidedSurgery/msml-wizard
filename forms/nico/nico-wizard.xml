@@ -1,12 +1,12 @@
-<wizard logo="cgs.png">
-    <textpage title="" subtitle="">
+<wizard logo="cgs.png" title="NWizard">
+    <textpage title="Introduction" subtitle="">
         <![CDATA[
                  <b>Introduction</b><br />
                  ...
         ]]>
     </textpage>
 
-    <formpage title="" subtitle="">
+    <formpage title="Patient and Data" subtitle="">
         <spinbox name="patientid"
                  label="Which patient will you operate on?" />
 

@@ -31,7 +31,7 @@ repository = WizardRepository(config.FORMS_DIRECTORY)
 def wizard_catalog():
     return render_template("index.html", repository = repository)
 
-@app.route("/<string:name>", endpoint='wizard')
+@app.route("/w/<string:name>", endpoint='wizard')
 def wizard_display(name):
     wz = repository[name]
     # template = app.jinja_env.from_string(wz.html_content)

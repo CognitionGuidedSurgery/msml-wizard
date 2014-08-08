@@ -49,15 +49,23 @@ class WizardHtmlBuilder(object):
 
     def wizard(self, e):
         self._html.write("<form role='form'>")
+        self._html.write("<h1>%s</h1>" % e.get('title', ""))
         for c in e.iterchildren():
             self.dispatch(c)
         self._html.write("</form>")
 
     def textpage(self, e):
-        return "<div class='page'>%s</div>" % e.text
+        title = e.get('title')
+        subtitle = e.get('subtitle')
+        return """<div class='page'>
+            <h1>%s</h1>
+        %s</div>""" % (title, e.text)
 
     def formpage(self, e):
         html = StringIO()
+        title = e.get('title')
+        self._html.write("<h1>%s</h1>" % title)
+
         for sub in e.iterchildren():
             html.write(self.dispatch(sub))
         return '<div class="page form-page">%s</div>' % html.getvalue()
