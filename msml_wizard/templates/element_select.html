@@ -1,8 +1,11 @@
-{% for k, v in options %}
-<div class="radio">
-    <label>
-        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-        Option two can be something else and selecting it will deselect option one
-    </label>
+<div class="form-group">
+    <label for="{{id}}">{{label}}</label>
+    <select id="{{id}}" name="{{id}}" class="form-control">
+        {% for label, key in options %}
+        <option value="{{key}}">
+            {{label}}
+        </option>
+        {% endfor %}
+    </select>
+
 </div>
-{% endfor %}

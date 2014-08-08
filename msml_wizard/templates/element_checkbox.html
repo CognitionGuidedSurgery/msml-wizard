@@ -1,8 +1,8 @@
 <div class="form-group">
     <label for="{{name}}">{{label}}</label>
     {% for k, v in options %}
-    <div class="checkbox">
-        <label class="{%if singlerow%}checkbox-inline{%endif%}">
+    <div class="{%if singlerow%}checkbox-inline{%else%}checkbox{%endif%}">
+        <label>
             <input type="checkbox" name="{{name}}" id="{{name}}" value="{{k}}">
             {{k}}
         </label>

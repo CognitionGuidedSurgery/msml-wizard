@@ -6,6 +6,10 @@ from path import path
 import BeautifulSoup
 import msml_wizard.wzbuilder
 
+def create_template(template):
+    from jinja2 import Environment
+    env = Environment()
+    return env.from_string(template)
 
 class WizardRepository(object):
     def __init__(self, location):
@@ -51,6 +55,7 @@ class Wizard(object):
         #self.html_filename = loc / self.meta['html']
         self.wizard_filename = loc / self.meta['wizard']
 
+
         self.css_filename = loc / self.meta['css']
 
         self.template_content = read(self.template_filename)
@@ -59,10 +64,31 @@ class Wizard(object):
 
     @property
     def html_content(self):
-        bldr = msml_wizard.wzbuilder.WizardHtmlBuilder()
+        bldr = msml_wizard.wzbuilder.WizardHtmlBuilder(self.location.basename())
         bldr.build_html_form(self.wizard_filename)
+        self.constraints = bldr.constraints
         return bldr.html
 
     def _parse_form_meta(self):
         html = BeautifulSoup.BeautifulSoup(self.html_content, isHTML=True)
         self._fields = html.findAll("input")
+
+    def generate(self, kwargs):
+        gcontent = create_template(self.template_content).render(**kwargs)
+
+        import time
+        name = str(time.time())
+        loc = path(self.location / "gen")
+
+        if not loc.exists():
+            loc.mkdir()
+
+        filename = loc / (name+ ".xml")
+        with open(filename, 'w') as fp:
+            fp.write(gcontent)
+
+        datafile = loc / (name+".py")
+        with open(datafile, 'w') as fp:
+            fp.write(repr(kwargs))
+
+        return filename

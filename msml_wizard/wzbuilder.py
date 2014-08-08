@@ -19,16 +19,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import os
-from lxml import etree
 from StringIO import StringIO
+from collections import defaultdict
+
+from lxml import etree
 from jinja2 import Template, Environment, PackageLoader
 
+from itertools import starmap
+
+
 class WizardHtmlBuilder(object):
-    def __init__(self):
+    def __init__(self, name):
         self._html = StringIO()
         self._js = StringIO()
         self.env = Environment(loader=PackageLoader(__name__))
+        self._constraints = defaultdict(list)
+        self._fields = []
+        self.name = name
 
     @property
     def html(self):
@@ -38,9 +45,35 @@ class WizardHtmlBuilder(object):
     def javascript(self):
         return self._js.getvalue()
 
+    def _add_constraint(self, node, *ids):
+        cs = node.get('enabled') or node.get('constraint')
+        if cs:
+            for i in ids:
+                self._constraints[i].append(cs)
+
+    def _add_fields(self, *ids):
+        self._fields += ids
+
+    @property
+    def constraints(self):
+        cs = {}
+        fields = { x : '"%s"' % x for x in self._fields}
+
+        for k,v in self._constraints.iteritems():
+            pred = ' && '.join(v)
+            try:
+                func = "function() {return %s;}" % pred.format(**fields)
+            except KeyError as e:
+                raise KeyError("you refered to an unknown field '%s'. Currently known is: %s" % (e.message, fields.keys()))
+            cs[k] = func
+
+        return cs
+
+
     def build_html_form(self, filename):
         with open(filename) as fh:
-            root = etree.parse(fh)
+            parser = etree.XMLParser(remove_comments=True, remove_blank_text=True, remove_pis=True)
+            root = etree.parse(fh, parser)
             root = root.getroot()
         return self.dispatch(root)
 
@@ -48,47 +81,67 @@ class WizardHtmlBuilder(object):
         return getattr(self, e.tag)(e)
 
     def wizard(self, e):
-        self._html.write("<form role='form'>")
+        self._html.write("<form role='form' action='/api/generate/%s' method='post'>" % self.name)
         self._html.write("<h1>%s</h1>" % e.get('title', ""))
         for c in e.iterchildren():
             self.dispatch(c)
+
+        self._html.write('<input type="submit" class="btn-primary btn" value="Generate">')
         self._html.write("</form>")
 
     def textpage(self, e):
         title = e.get('title')
         subtitle = e.get('subtitle')
-        return """<div class='page'>
-            <h1>%s</h1>
-        %s</div>""" % (title, e.text)
+
+        i = generate_name()
+        self._add_constraint(e, i);
+        self.render_html("element_textpage.html",
+                         id = i,
+                         title=title,
+                         content=e.text)
 
     def formpage(self, e):
         html = StringIO()
         title = e.get('title')
-        self._html.write("<h1>%s</h1>" % title)
+        i = generate_name()
+        self._add_constraint(e, i)
+        self._html.write('''<div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">%s</h3>
+                            </div>
+                            <div class="panel-body" id="%s">''' % (title, i))
 
         for sub in e.iterchildren():
-            html.write(self.dispatch(sub))
-        return '<div class="page form-page">%s</div>' % html.getvalue()
+            self.dispatch(sub)
+
+        self._html.write("</div></div>")
 
     def slider(self, xml):
-        self._js.write(Template("""
-           $(window).load(function() {
-                $('#{{name}}').spinner({
-                    min : {{min}}, max:{{max}}, step: {{step}}
-                }).parent().addClass('form-control');
-           });
-        """).render(**xml.attrib))
+        default = {
+            'step': 1,
+            'min': 0,
+            'max': 100,
+            'value': 1,
+        }
 
-        self.render_html("element_slider.html", **xml.attrib)
+        self._add_constraint(xml, xml.get('id'))
+        self._add_fields(xml.get('id'))
+        default.update(xml.attrib)
+        self.render_html("element_slider.html", **default)
 
 
     def render_html(self, template, *args, **kwargs):
         self._html.write(self.env.get_template(template).render(*args, **kwargs))
 
+    def activate(self, e):
+        self._add_constraint(e, e.get('id'))
+        self._add_fields(e.get('id'))
+        self.render_html("element_activate.html", **e.attrib)
+
     def spinbox(self, xml):
         m, M, s = xml.get('min', 0), xml.get('max', 100), xml.get('step', 1)
         suffix = xml.get('suffix', "")
-        name = xml.get('name')
+        name = xml.get('id')
         label = xml.get('label')
 
         self._js.write(Template("""
@@ -102,26 +155,62 @@ class WizardHtmlBuilder(object):
         self.render_html("element_spinbox.html", **xml.attrib)
 
     def file(self, xml):
+        self._add_fields(xml.get('id'))
+        self._add_constraint(xml, xml.get('id'))
         self.render_html("element_file.html", **xml.attrib)
 
     def textfield(self, xml):
+        self._add_fields(xml.get('id'))
+        self._add_constraint(xml, xml.get('id'))
         self.render_html("element_textfield.html", **xml.attrib)
 
     def select(self, xml):
+        self._add_fields(xml.get('id'))
+        self._add_constraint(xml, xml.get('id'))
         values = parse_options(xml)
-        self.render_html("element_select.html", options = values, **xml.attrib)
+        self.render_html("element_select.html", options=values, **xml.attrib)
 
     def radio(self, xml):
-        self.render_html("element_radio.html", options = parse_options(xml), **xml.attrib)
+
+        prefix = xml.get('id')
+        ids = tuple(starmap(
+            lambda k, v: prefix + "_" + k,
+            parse_options(xml)
+        ))
+        self._add_constraint(xml, *ids)
+        self._add_fields(*ids)
+        self._add_fields(prefix)
+        self.render_html("element_radio.html", options=parse_options(xml), **xml.attrib)
 
     def checkbox(self, xml):
-        self.render_html("element_checkbox.html", options = parse_options(xml), **xml.attrib)
+        prefix = xml.get('id')
+        ids = tuple(starmap(
+            lambda k, v: prefix + "_" + k,
+            parse_options(xml)
+        ))
+
+        self._add_fields(*ids)
+        self._add_fields(prefix)
+
+        self._add_constraint(xml, *ids)
+        self.render_html("element_checkbox.html", options=parse_options(xml), **xml.attrib)
 
 
     def content(self, xml):
+        i = generate_name()
+        c = xml.get('class', "")
+        self._add_constraint(xml, i)
         self._html.write("""
-            <div>%s</div>
-        """ % xml.text)
+            <p id="%s" class="content-box %s">%s</p>
+        """ % (i, c, xml.text))
+
+
+def generate_name(prefix="id_"):
+    if not hasattr(generate_name, 'counter'):
+        generate_name.counter = 0
+    generate_name.counter += 1
+    return prefix + str(generate_name.counter)
+
 
 
 def parse_options(root):
@@ -135,8 +224,7 @@ def parse_options(root):
 
     for child in root:
         label, value = child.get('label'), child.get('value')
-        if not label:
-            label = value
+        label = label or child.text or value
         options.append((label, value))
 
     return options

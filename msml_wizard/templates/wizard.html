@@ -3,5 +3,22 @@
 {% block content %}
         {% autoescape False %}
         {{html_content}}
+
+
+        <script>
+            var constraints = [
+                {% for id, pred in constraints.iteritems() %}
+                    [{{pred}}, "{{id}}"],
+                {%endfor%}
+            ];
+
+            var wizard_name = "{{wizard_name}}";
+
+            $(function () {
+             $("input, select, .ui-slider").change(evalConstraints);
+             evalConstraints();
+                //$('form').on('submit', submit_wizard);
+            });
+        </script>
         {% endautoescape %}
 {%endblock%}

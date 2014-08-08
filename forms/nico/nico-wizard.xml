@@ -1,4 +1,4 @@
-<wizard logo="cgs.png" title="NWizard">
+<wizard logo="cgs.png" title="Hiflow Heart/Liver/Aorta Simulation">
     <textpage title="Introduction" subtitle="">
         <![CDATA[
                  <b>Introduction</b><br />
@@ -7,101 +7,118 @@
     </textpage>
 
     <formpage title="Patient and Data" subtitle="">
-        <spinbox name="patientid"
-                 label="Which patient will you operate on?" />
+        <spinbox id="patientid"
+                 label="Which patient will you operate on?"/>
 
         <radio label="Which organ will you operate on?"
-               name="organ" singlerow="1"
-               values="liver|heart|aorta" />
+               id="organ" singlerow="1"
+               values="liver|heart|aorta"/>
 
-        <file name="segmentedorgan" label="Segmented organ" />
+        <file id="segmentedorgan" label="Segmented organ"/>
 
-        <spinbox label="Which accuracy [in mm] do you require the simulation to satisfy?"
+        <slider label="Which accuracy [in mm] do you require the simulation to satisfy?"
                 min="1" max="1000" step="10"
                 suffix=" mm"
-                name="accuracy" />
+                id="accuracy"/>
     </formpage>
 
-    <formpage title="" subtitle="Liver settings"
-              enabled="self.field('organ_liver').toBool()">
+    <formpage title="Liver settings"
+              enabled="isChecked({organ}, 'liver')">
         <content>Please specify this only if you operate on liver</content>
 
-        <radio label="Are the deformations caused by your surgical manipulation rather large?"
-               values="yes|no"
-               name="size_of_manipulation"
-               />
-        <checkbox label="Use literature bases properties of liver?"
-               values="yes"  name="liver_literature" />
+        <activate
+                label="Are the deformations caused by your surgical manipulation rather large?"
+                id="size_of_manipulation"/>
+
+        <activate
+                label="Use literature bases properties of liver?"
+                id="liver_literature"/>
+
+        <content enabled="isChecked({liver_literature})" class="bg-warning">
+            <![CDATA[
+                <b>Attention</b><br/>
+                The current used literature based material parameters are created by a monkey hammering on a keyboard!!!1111!1
+            ]]>
+        </content>
+
+        <!-- something wrong here with guards -->
+        <select id="literature_liver_models" label="predefined models: "
+                enabled="! isChecked({liver_literature})">
+
+            <option value="1">Elephant</option>
+            <option value="6">Unicorn</option>
+            <option value="2">Monkey</option>
+            <option value="3">Car</option>
+            <option value="4">Fish</option>
+            <option value="5">Snake</option>
+        </select>
 
         <slider
-            enabled="not self.field('liver_literature_yes').toBool()"
-            label="Please give material properties of your choice!"
-            min="0"  max="100" step="1"
-            name="liver_emodule" />
+                enabled="! isChecked({liver_literature})"
+                label="Please give material properties of your choice!"
+                min="0" max="100" step="1"
+                id="liver_emodule"/>
 
         <slider
-            enabled="not self.field('liver_literature_yes').toBool()"
-            label="Please give material parameter 'Poisson Ratio'"
-            min="0"  max="100" step="1" name="liver_poissonratio"  />
+                enabled="! isChecked({liver_literature})"
+                label="Please give material parameter 'Poisson Ratio'"
+                min="0" max="100" step="1" id="liver_poissonratio"/>
 
-        <checkbox
-            label="Do you want to consider uncertainties with
+        <activate
+                label="Do you want to consider uncertainties with
                    maths-based methods of Uncertainty Quantification (UQ)?"
-            values="yes"
-            name="aaa" />
+                id="aaa"/>
 
         <textfield
-            label="Which parameters do you assume to be subject to uncertainties
+                label="Which parameters do you assume to be subject to uncertainties
                    or prone to errors?"
-            name="blablubb" />
+                id="blablubb"/>
 
-        <checkbox label="Will cutting processes be part of your liver operation?"
-               name="cutprocess"
-               values="yes" />
+        <activate label="Will cutting processes be part of your liver operation?"
+                  id="cutprocess"
+                />
 
     </formpage>
 
-    <formpage title="" subtitle="Heart settings"
-              enabled="self.field('organ_heart').toBool()">
+    <formpage title="Heart settings"
+              enabled="isChecked({organ}, 'heart')">
 
         <content>
             Please specify your settings for the heart operation.
         </content>
 
         <radio label="Are the deformations caused by your surgical manipulation rather large?"
-               name="deformlarge"
+               id="deformlarge"
                values="yes|no"/>
 
-        <content enable="{{deformlarge}} == 'yes'">
+        <content enable="isChecked({deformlarge})">
             The heart (mitral valve) simulation will be set up using literature-based
             mean material properties of a heart's valve leaflets.
         </content>
 
         <slider
-            label="Please give material properties of your choice!"
-            min="0"  max="100" step="1"
-            name="emodule" />
+                label="Please give material properties of your choice!"
+                min="0" max="100" step="1"
+                id="emodule"/>
 
         <slider label="Please give material parameter 'Poisson Ratio'"
-                min="0"  max="100" step="1" name="poissonratio"  />
+                min="0" max="100" step="1" id="poissonratio"/>
 
-        <radio label="Which parameter do you want to set as the optimization goal? Size of Coaptation or Ring stress?" name="goal" values="yes|no" />
-
-        <content>Size of Coaptation:</content>
-        <content>elseif Ring stress:</content>
+        <radio
+                label="Which parameter do you want to set as the optimization goal?"
+                id="goal" values="Size of Coaptation|Ring stress"/>
 
         <radio label="Do you want to consider uncertainties with maths-based methods of Uncertainty Quantification (UQ)?"
-               name="aaaa" values="yes|no"  />
+               id="aaaa" values="yes|no"/>
 
-        <textfield label="Which parameters do you assume to be subject to uncertainties or prone to errors?" name="ab" />
+        <textfield label="Which parameters do you assume to be subject to uncertainties or prone to errors?" id="ab"/>
 
-   <radio label="Do you want to consider different MV-reconstruction scenarios"
-          name="alala"
-          values="yes|no" />
+        <activate label="Do you want to consider different MV-reconstruction scenarios"
+                  id="alala"/>
 
 
-   <textfield label="You may vary the shape of the implanted AnnulusRing.
+        <textfield label="You may vary the shape of the implanted AnnulusRing.
                      Therefore, please choose a set of ring types."
-              name="all" enable="{{alala}} == 'yes'" />
+                   id="all" enable="{alala} == 'yes'"/>
     </formpage>
 </wizard>

@@ -1,0 +1,9 @@
+.form-control {
+    height: auto !important;
+}
+
+.slider-textfield {
+    border:none;
+    background: transparent;
+    text-align: right;
+}

@@ -1,4 +1,26 @@
- <div class="form-group">
-            <label for="{{name}}">{{label}}</label>
-            <input name="{{name}}" id="{{name}}" class="form-control" type="text"/>
+<div class="form-group">
+    <label for="{{name}}">{{label}}</label>
+
+    <div class="form-control">
+        <div id="{{id}}_slider"></div>
+        <div style="text-align: right">
+            <input type="text" id="{{id}}" name="{{id}}" readonly
+                    class="disabled slider-textfield">
+        </div>
+    </div>
 </div>
+
+
+<script>
+    $(function () {
+        $("#{{id}}_slider").slider({
+            value: {{value}},
+            min:  {{min}},
+            max: {{max}},
+            step: {{step}},
+            slide: function (event, ui) {
+                $("#{{id}}").val(ui.value);
+            }
+        });
+    });
+</script>

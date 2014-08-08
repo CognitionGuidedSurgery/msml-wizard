@@ -35,17 +35,30 @@ def wizard_catalog():
 def wizard_display(name):
     wz = repository[name]
     # template = app.jinja_env.from_string(wz.html_content)
-    return render_template("wizard.html", html_content = wz.html_content)
-
+    return render_template("wizard.html", html_content = wz.html_content,
+                           wizard_name = name,
+                           constraints = wz.constraints
+    )
 
 @app.route("/asset/<path:filename>")
+@app.route("/assets/<path:filename>")
 def asset(filename):
     assets_dir = path(__file__).parent.parent / "assets"
     return send_from_directory(assets_dir, filename, as_attachment = False )
 
+
 # -- --------------------------------------------------------------------------
 # Rest Api
 
+class Generate(Resource):
+    def post(self, name):
+        wizard = repository[name]
+        kwargs = dict(request.form)
+        filename = wizard.generate(request.form)
+        return send_file(filename, "text/xml", True)
+
+
+api.add_resource(Generate, '/api/generate/<string:name>')
 
 class Wizard(Resource):
     def get(self):

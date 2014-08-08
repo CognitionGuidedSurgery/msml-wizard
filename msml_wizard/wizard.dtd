@@ -1,0 +1,60 @@
+<!DOCTYPE wizard [
+        <!ELEMENT wizard (textpage|formpage)*>
+        <!ATTLIST wizard
+                logo CDATA #REQUIRED
+                title CDATA #REQUIRED>
+        <!ELEMENT textpage (#PCDATA)>
+        <!ATTLIST textpage
+                title CDATA #REQUIRED
+                subtitle CDATA #REQUIRED>
+        <!ELEMENT formpage (spinbox|radio|file|slider|content|activate|select|textfield)*>
+        <!ATTLIST formpage
+                enabled CDATA #IMPLIED
+                subtitle CDATA #IMPLIED
+                title CDATA #REQUIRED>
+        <!ELEMENT spinbox (#PCDATA)>
+        <!ATTLIST spinbox
+                id CDATA #REQUIRED
+                label CDATA #REQUIRED>
+        <!ELEMENT radio (#PCDATA)>
+        <!ATTLIST radio
+                id CDATA #REQUIRED
+                label CDATA #REQUIRED
+                singlerow CDATA #IMPLIED
+                values CDATA #REQUIRED>
+        <!ELEMENT file (#PCDATA)>
+        <!ATTLIST file
+                id CDATA #REQUIRED
+                label CDATA #REQUIRED>
+        <!ELEMENT slider (#PCDATA)>
+        <!ATTLIST slider
+                enabled CDATA #IMPLIED
+                id CDATA #REQUIRED
+                label CDATA #REQUIRED
+                max CDATA #REQUIRED
+                min CDATA #REQUIRED
+                step CDATA #REQUIRED
+                suffix CDATA #IMPLIED>
+        <!ELEMENT content (#PCDATA)>
+        <!ATTLIST content
+                class CDATA #IMPLIED
+                enable CDATA #IMPLIED
+                enabled CDATA #IMPLIED>
+        <!ELEMENT activate (#PCDATA)>
+        <!ATTLIST activate
+                id CDATA #REQUIRED
+                label CDATA #REQUIRED>
+        <!ELEMENT select (option)*>
+        <!ATTLIST select
+                id CDATA #REQUIRED
+                label CDATA #REQUIRED
+                enabled CDATA #REQUIRED>
+        <!ELEMENT option (#PCDATA)>
+        <!ATTLIST option
+                value CDATA #REQUIRED>
+        <!ELEMENT textfield (#PCDATA)>
+        <!ATTLIST textfield
+                enable CDATA #IMPLIED
+                id CDATA #REQUIRED
+                label CDATA #REQUIRED>
+        ]>

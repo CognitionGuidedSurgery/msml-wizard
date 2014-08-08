@@ -2,3 +2,30 @@ form {
     width: 50em;
     margin:auto;
 }
+
+.slider-textfield {
+  background: transparent;
+  border:none;
+  text-align: right;
+
+}
+.content-box.disabled {
+    opacity: 0.4;
+}
+
+.logo {
+    text-align: right;
+    margin-right: 1em;
+    margin-top:1em;
+}
+
+.content {
+    width:60em; margin:auto;
+    background: #ffffff;
+    padding: 2em;
+    box-shadow: 10px 10px 5px #888;
+}
+
+body {
+    background:#eee;
+}

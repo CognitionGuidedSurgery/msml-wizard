@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html{% block html_attribs %}{% endblock html_attribs %}>
 {%- block html %}
-  <head>
+<head>
     {%- block head %}
     <title>{% block title %}{% endblock title %}</title>
 
@@ -12,41 +12,54 @@
 
     {%- block styles %}
     <!-- Bootstrap -->
-    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css">
-
-
+    {% if debug %}
+    <link href="/asset/bootstrap-3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/asset/jquery-ui-1.11.0/jquery-ui.css">
+    {% else %}
+    <link href="/asset/bootstrap-3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/asset/jquery-ui-1.11.0/jquery-ui.min.css">
+    {% endif %}
     <link rel="stylesheet" href="/asset/style.css">
+    <link rel="stylesheet" href="/asset/slider/css/slider.css">
 
+
+    <style>
+        {{additional_styles}}
+    </style>
     {%- endblock styles %}
+
     {% block scripts_head -%}
-    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
-    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+    <script src="/asset/jquery-2.1.1.min.js"></script>
+    <script src="/asset/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script src="/asset/slider/js/bootstrap-slider.js"></script>
+    <script src="/asset/jquery-ui-1.11.0/jquery-ui.min.js"></script>
     <script src="/asset/jquery.steps.js"></script>
     <script src="/asset/jquery.form.js"></script>
     <script src="/asset/jquery.validate.js"></script>
+    <script src="/asset/constraints.js"></script>
+
 
     {%- endblock %}
     {%- endblock head %}
-  </head>
-  <body{% block body_attribs %}{% endblock body_attribs %}>
-    {% block body -%}
-    {% block navbar %}
-        <div>
-            <img src="/asset/cgs.png"/>
-        </div>
+</head>
+<body{% block body_attribs %}{% endblock body_attribs %}>
+{% block body -%}
+{% block navbar %}
+{%- endblock navbar %}
 
 
-    {%- endblock navbar %}
-    {% block content -%}
-    {%- endblock content %}
+<div class="content">
+    <div class="logo">
+        <img src="/asset/cgs.png"/>
+    </div>
+    {% block content -%}{%- endblock content %}
+</div>
 
-    {% block scripts %}
+{% block scripts %}
 
-    {%- endblock scripts %}
-    {%- endblock body %}
-  </body>
+{%- endblock scripts %}
+{%- endblock body %}
+</body>
 {%- endblock html %}
 </html>
 {% endblock doc -%}

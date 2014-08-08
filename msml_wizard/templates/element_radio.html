@@ -1,12 +1,15 @@
 <div class="form-group">
     <label>{{label}}</label>
-    {% for k, v in options %}
-    <div class="radio">
-        <label class="{%if singlerow%}radio-inline{%endif%}">
 
-            <input type="radio" name="{{name}}" id="{{name}}_{{k}}" value="{{k}}">
-            {{v}}
-        </label>
+    <div class="form-control">
+        {% for k, v in options %}
+        <div class="{%if singlerow%}radio-inline{%else%}radio{%endif%}">
+            <label class="">
+                <input type="radio" name="{{id}}" id="{{id}}_{{k}}" value="{{k}}">
+                {{v}}
+            </label>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
 </div>
