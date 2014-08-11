@@ -28,8 +28,18 @@ class FileManagement(Resource):
         """Upload a file via http upload
         :return:
         """
-        file = request.files['file']
-        category = path(request.form.get('category', ''))
+
+        try:
+            file = request.files['file']
+        except:
+            print request.files
+            print request.path
+            print request.args
+            print request.form
+
+            abort(501, "No file given in request.")
+
+        category = c.FILES_DIR / request.form.get('category', '')
 
         if not category.exists():
             category.makedirs_p()

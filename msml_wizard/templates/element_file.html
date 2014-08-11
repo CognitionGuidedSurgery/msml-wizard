@@ -1,4 +1,29 @@
 <div class="form-group">
     <label for="{{name}}">{{label}}</label>
-    <input name="{{name}}" id="{{name}}" type="file"/>
+    <label for="select">Files:</label>
+
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span
+                    class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">XNAT</a></li>
+                <li class="seperator"></li>
+                <li>
+                    <a href="#" onclick="openUploadDialog()">
+                        <span class="glyphicon glyphicon-cloud-upload"></span> Upload</a>
+                </li>
+                <li>
+                    <a href="#" onclick="load_files($('#{{id}}'))">
+                        <span class="glyphicon glyphicon-refresh"></span> Refresh</a>
+                </li>
+            </ul>
+        </div>
+        <select id="{{id}}" name="{{id}}"
+                class="show-menu-arrow show-tick form-control file-picker"
+                data-size="15" data-live-search="true"></select>
+        <script>
+            $(function() {load_files($('#{{id}}'));});
+        </script>
+    </div>
 </div>

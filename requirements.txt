@@ -7,3 +7,4 @@ gunicorn
 path.py
 BeautifulSoup
 Flask-DebugToolbar
+Flask-Assets
