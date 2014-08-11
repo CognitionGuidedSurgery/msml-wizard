@@ -1,0 +1,119 @@
+<html>
+<head>
+    <link href="/asset/bootstrap-3.2.0/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/asset/jquery-ui-1.11.0/jquery-ui.css">
+    <link rel="stylesheet" href="/asset/style.css">
+    <link rel="stylesheet" href="/asset/slider/css/slider.css">
+    <link rel="stylesheet" href="/asset/bootstrap-select/dist/css/bootstrap-select.min.css"/>
+
+    <script src="/asset/jquery-2.1.1.min.js"></script>
+    <script src="/asset/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script src="/asset/slider/js/bootstrap-slider.js"></script>
+    <script src="/asset/jquery-ui-1.11.0/jquery-ui.min.js"></script>
+    <script src="/asset/jquery.steps.js"></script>
+    <script src="/asset/jquery.form.js"></script>
+    <script src="/asset/jquery.validate.js"></script>
+    <script src="/asset/constraints.js"></script>
+    <script src="/asset/bootstrap-select/dist/js/bootstrap-select.js"></script>
+
+
+    <script language="javascript">
+        function load_files(elements) {
+            $.get("/api/file", function(data){
+                options = "";
+                for(index in data){
+                    console.log(data[index]);
+                    options += "<option value='"+data[index]+"'>"+data[index]+"</option>"
+                }
+                elements.html(options);
+                elements.selectpicker('refresh');
+            });
+        }
+
+        $(function() {
+            $('select').selectpicker();
+            load_files($('select'));
+        });
+
+        function openUploadDialog() {
+            $('#myModal').modal();
+        }
+
+    </script>
+</head>
+<body>
+<div class="content">
+    <form role="form">
+        <div class="form-group">
+            <label for="select">Files:</label>
+
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span
+                            class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">SERVER</a></li>
+                        <li><a href="#">XNAT</a></li>
+                        <li class="seperator"></li>
+                        <li>
+                            <a href="#" onclick="openUploadDialog()">
+                                <span class="glyphicon glyphicon-cloud-upload"></span> Upload</a>
+                        </li>
+                    </ul>
+                </div>
+                <select id="select" name="file-picker" class="show-menu-arrow show-tick form-control file-picker"
+                        data-size="15" data-live-search="true"></select>
+
+            </div>
+
+            sdfsdafsdaf
+            sda
+            fsda
+            fsdaf
+            sda
+            fsda
+            fsdaf
+            sda
+            fsda
+            fsda
+            fsda
+            fsdafdafsda
+            fsda
+            fsda
+            fsda
+            fsda
+            fsda
+            fsda
+            f
+        </div>
+    </form>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

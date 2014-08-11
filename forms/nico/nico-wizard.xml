@@ -116,9 +116,18 @@
         <activate label="Do you want to consider different MV-reconstruction scenarios"
                   id="alala"/>
 
-
         <textfield label="You may vary the shape of the implanted AnnulusRing.
                      Therefore, please choose a set of ring types."
                    id="all" enable="{alala} == 'yes'"/>
     </formpage>
+
+<!--
+    <validation>
+        if( isChecked({organ_liver}) )
+        {
+
+
+        }
+    </validation>
+-->
 </wizard>

@@ -16,6 +16,8 @@ import msml_wizard.config as config
 from msml_wizard.formmgmt import *
 from flask_debugtoolbar import DebugToolbarExtension
 
+from msml_wizard.filemgmt import FileManagement
+
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -23,7 +25,6 @@ app.config.from_object(config)
 dtoolbar = DebugToolbarExtension(app)
 Bootstrap(app)
 api = swagger.docs(Api(app), apiVersion="0.1")
-
 
 repository = WizardRepository(config.FORMS_DIRECTORY)
 
@@ -59,6 +60,7 @@ class Generate(Resource):
 
 
 api.add_resource(Generate, '/api/generate/<string:name>')
+api.add_resource(FileManagement, '/api/file')
 
 class Wizard(Resource):
     def get(self):

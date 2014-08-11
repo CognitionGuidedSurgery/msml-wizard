@@ -52,3 +52,1318 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+
+<!DOCTYPE html>\r<!--[if lt IE 7]> 
+<html class="ie ie6 ltie7 ltie8 ltie9 ltie10 no-js"> <![endif]-->\r
+<!--[if IE 7]>  
+  <html class="ie ie7 ltie8 ltie9 ltie10 no-js"> <![endif]-->\r
+<!--[if IE 8]>   
+   <html class="ie ie8 ltie9 ltie10 no-js"> <![endif]-->\r
+<!--[if IE 9]>  
+     <html class="ie ie9 ltie10 no-js"> <![endif]-->\r
+<!--[if gt IE 9]><!--> 
+     <html class="no-js"> <!--<![endif]-->\r
+\r
+<head>\r
+<!-- path: xnat-templates/navigations/htmlOpen -->\r
+  
+       <title>sfb125</title>\r
+    <!-- HeaderIncludes -->\r
+    <!-- path: /xnat-templates/navigations/HeaderIncludes -->
+
+
+       
+       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Pragma" content="no-cache">
+
+       <meta http-equiv="cache-control" content="max-age=0">
+<meta http-equiv="cache-control" content="no-cache">
+
+       <meta http-equiv="expires" content="-1">
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+
+       <script type="text/javascript" src="/scripts/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+  
+         // use \'jq\' instead of \'$\' for jQuery functions to avoid _possible_ conflicts with Velocity
+    // but $() and jQuery() should still work since we\'re not using noConflict()
+    var jq = jQuery;
+\tjq.ajaxSetup({ cache: false });
+</script>
+
+<script type="text/javascript">
+
+    if (typeof XNAT == "undefined" || !XNAT) {
+        /*
+         * XNAT global namespace object, which will not be overwriten if
+         * already defined. Also define some other top level namespaces.
+         */
+        var XNAT = {
+                     /*
+                      * Parent namespace that templates can use to put their
+                      * own namespace
+                      */
+                     app: {
+    \t\t\t\t\t displayNames : {
+    \t\t\t\t\t \tsingular : {
+    \t\t\t\t\t\t\tproject : "Project",
+    \t\t\t\t\t\t\tsubject : "Subject",
+    \t\t\t\t\t\t\timageSession : "Session",
+    \t\t\t\t\t\t\tmrSession : "MR Session"
+    \t\t\t\t\t\t},
+    \t\t\t\t\t\tplural : {
+    \t\t\t\t\t\t\tproject : "Projects",
+    \t\t\t\t\t\t\tsubject : "Subjects",
+    \t\t\t\t\t\t\timageSession : "Sessions",
+    \t\t\t\t\t\t\tmrSession : "MR Sessions"
+    \t\t\t\t\t\t}
+    \t\t\t\t\t }
+\t\t\t\t\t },
+                     images:{
+                        grnChk:"/images/checkmarkGreen.gif",
+                        redChk:"/images/checkmarkRed.gif"
+                     }
+                   };
+    }
+
+    var serverRoot = "";
+    var csrfToken = "64ddf2ca-c22a-4078-baf4-43946ef38e09";
+    var showReason = false;
+    var requireReason = false;
+
+    XNAT.app.showLeftBar=true;
+    XNAT.app.showLeftBarProjects=true;
+    XNAT.app.showLeftBarFavorites=true;
+    XNAT.app.showLeftBarSearch=true;
+    XNAT.app.showLeftBarBrowse=true;
+
+    window.available_elements=new Array();
+
+        
+            window.available_elements.push({singular:"Subject",plural:"Subjects",\t\t\telement_name:"xnat:subjectData",actions:[],"lbg":"FFFFFF","dbg":"DEDEDE"});
+            window.available_elements.push({singular:"MR Session",plural:"MR Sessions",\t\t\telement_name:"xnat:mrSessionData",actions:[],"lbg":"FFFFFF","dbg":"DEDEDE"});
+            window.available_elements.push({singular:"CT Session",plural:"CT Sessions",\t\t\telement_name:"xnat:ctSessionData",actions:[],"lbg":"CCCCFF","dbg":"9999CC"});
+            window.available_elements.push({singular:"Other DICOM Session",plural:"Other DICOM Sessions",\t\t\telement_name:"xnat:otherDicomSessionData",actions:[],"lbg":"CCCCFF","dbg":"9999CC"});
+            window.available_elements.push({singular:"DX Session",plural:"DX Sessions",\t\t\telement_name:"xnat:dxSessionData",actions:[],"lbg":"CCCCFF","dbg":"9999CC"});
+    
+    window.available_elements.getByName=function(name){
+      for(var aeC=0;aeC<this.length;aeC++){
+        if(this[aeC].element_name==name){
+          return this[aeC];
+        }
+      }
+    };
+
+               window.projectScope="MSML_TEST";
+         
+                  XNAT.app.current_uri=serverRoot+"/REST/projects/MSML_TEST/subjects/$om.getSubjectId()/experiments/MSML_TEST";
+    </script>
+<script type="text/javascript" src="/scripts/xdat.js"></script>
+<script type="text/javascript" src="/scripts/DynamicJSLoad.js"></script>
+<!-- YAHOO USER INTERFACE files below here -->
+<script type="text/javascript" src="/scripts/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/event/event.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/container/container-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/menu/menu-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/element/element-beta-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/button/button-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/connection/connection-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/treeview/treeview-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/cookie/cookie-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/tabview/tabview-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/datasource/datasource-min.js"></script> 
+<script type="text/javascript" src="/scripts/yui/build/resize/resize-min.js"></script>   
+<script type="text/javascript" src="/scripts/yui/build/dragdrop/dragdrop-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/datatable/datatable-min.js"></script>  
+<script type="text/javascript" src="/scripts/yui/build/paginator/paginator-min.js"></script>  
+<script type="text/javascript" src="/scripts/yui/build/json/json-min.js"></script>  
+<script type="text/javascript" src="/scripts/yui/xnat_loader.js"></script>
+<script type="text/javascript" src="/scripts/LeftBarTreeView.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/event/event-min.js"></script>
+<script type="text/javascript" src="/scripts/justification/justification.js"></script>
+<script type="text/javascript" src="/scripts/utils.js"></script>
+<script type="text/javascript">
+    var YUIDOM=YAHOO.util.Dom;
+    YAHOO.util.Event.onDOMReady(function(){
+        var myforms = document.getElementsByTagName("form");
+        for (var i=0; i<myforms.length; i++) {
+            var form = myforms[i];
+            var el = document.createElement("input");
+            el.type = "hidden";
+            el.name = "XNAT_CSRF";
+            el.value = "64ddf2ca-c22a-4078-baf4-43946ef38e09";
+            form.appendChild(el);
+        }
+    });
+</script>
+
+<!-- YUI css -->
+<link rel="stylesheet" type="text/css" href="/scripts/yui/build/assets/skins/sam/skin.css">
+
+<!-- xdat.css and xnat.css loaded last to override YUI styles -->
+<link rel="stylesheet" type="text/css" href="/style/xdat.css">
+<link rel="stylesheet" type="text/css" href="/style/xnat.css">
+
+<link rel="stylesheet" type="text/css" href="/scripts/xModal/xModal.css">
+<!-- xModal.css needs to be before xModal.js so the script doesn\'t insert it again -->
+<script type="text/javascript" src="/scripts/xModal/xModal.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/scripts/tabWrangler/tabWrangler.css">
+<script type="text/javascript" src="/scripts/tabWrangler/tabWrangler.js"></script>
+
+\t\t\r
+    <!-- /HeaderIncludes -->\r
+
+
+<!-- path: xnat-templates/navigations/bodyOpen -->\r
+</head>\r
+<body id="page_body" class="yui-skin-sam">\r
+<div id="page_wrapper">\r
+
+
+
+<!-- path: xdat-templates/layouts/Default -->
+
+<table id="wrapper_table" cellpadding="0" cellspacing="0">
+    <tr id="DefaultTopTR">
+        <td height="60"  colspan="2" >
+            
+<!-- START: xnat-templates/navigations/DefaultTop.vm -->
+
+
+
+<script type="text/javascript" src="/scripts/jquery/jquery.cookie.js"></script>
+<!-- main_nav interactions -->
+<script type="text/javascript">
+
+    var cover_up_count = 0 ;
+
+    function coverApplet(jqObj){
+
+        cover_up_count++ ;
+
+        var cover_up_id = \'cover_up\'+cover_up_count ;
+
+        var
+            jqObjPos = jqObj.offset(),
+            jqObjLeft = jqObjPos.left,
+            jqObjTop = jqObjPos.top,
+            jqObjMarginTop = jqObj.css(\'margin-top\'),
+            jqObjWidth = jqObj.outerWidth()+4,
+            jqObjHeight = jqObj.outerHeight()+2
+        ;
+
+        jqObj.before(\'<iframe id="\'+cover_up_id+\'" class="applet_cover_up" src="about:blank" width="\'+jqObjWidth+\'" height="\'+jqObjHeight+\'"></iframe>\');
+
+        jq(\'#\'+cover_up_id).css({
+            display: \'block\',
+            position: \'fixed\',
+            width: jqObjWidth,
+            height: jqObjHeight,
+            marginTop: jqObjMarginTop,
+            left: jqObjLeft,
+            top: jqObjTop,
+            background: \'transparent\',
+            border: \'none\',
+            outline: \'none\'
+        });
+
+    }
+
+    function unCoverApplets(jqObj){
+        jqObj.prev(\'iframe.applet_cover_up\').detach();
+    }
+
+    jq(document).ready(function() {
+
+        var _body = jq(\'body\');
+
+        function fadeInNav(jqObj){
+            jqObj.stop(\'clearQueue\',\'gotoEnd\');
+            jqObj.find(\' > ul\').fadeIn(80).addClass(\'open\');
+        }
+
+        function fadeOutNav(jqObj){
+            jqObj.stop(\'clearQueue\',\'gotoEnd\');
+            jqObj.find(\' > ul\').fadeOut(100).removeClass(\'open\');
+        }
+
+        // fancy fades on hover
+        jq(\'#main_nav > ul > li\').hover(
+            function() {
+                fadeInNav(jq(this));
+                //jq(\'#main_nav li\').removeClass(\'open\');
+                if (_body.hasClass(\'applet\')){
+                    coverApplet(jq(this).find(\' > ul\'));
+                }
+            },
+            function() {
+                fadeOutNav(jq(this));
+                if (_body.hasClass(\'applet\')){
+                    unCoverApplets(jq(this).find(\' > ul\'));
+                }
+            }
+        );
+
+        // modifying widths of 2nd level menu
+        jq(\'#main_nav li li\').hover(
+            function() {
+                var submenu_width = jq(this).outerWidth();
+                jq(this).find(\' > ul\').css({\'left\':submenu_width+1});
+                fadeInNav(jq(this));
+                if (_body.hasClass(\'applet\')){
+                    coverApplet(jq(this).find(\' > ul\'));
+                }
+            },
+            function(){
+                fadeOutNav(jq(this));
+                if (_body.hasClass(\'applet\')){
+                    unCoverApplets(jq(this).find(\' > ul\'));
+                }
+            }
+        );
+
+        // give menus with submenus a class of \'more\'
+        jq(\'#main_nav li ul , #main_nav li li ul\').closest(\'li\').find(\' > a\').addClass(\'more\');
+        jq(\'#main_nav li li ul\').closest(\'li\').addClass(\'more\');
+        jq(\'#main_nav li li ul\').addClass(\'subnav\');
+
+        // clicking the "Logout" link sets the warning bar cookie to \'OPEN\' so it\'s available if needed on next login
+        jq(\'#logout_user\').click(function(){
+            jq.cookie(\'WARNING_BAR\',\'OPEN\',{path:\'/\'});
+        });
+    }); // end (document).ready
+</script>
+<!-- end main_nav interactions -->
+
+
+<div id="img_preload" style="position:fixed;left:-9999px;top:-9999px;">
+    <img src="/images/nav_bkdg.png" alt="">
+    <img src="/images/nav_bkdg_hover.png" alt="">
+</div>
+
+<style type="text/css">
+    #attention_icon { float: left ; padding-top: 7px ; padding-left: 11px ; }
+    #attention_icon:hover { cursor: pointer ; }
+</style>
+
+<div id="user_bar">
+    <img id="attention_icon" src="/images/attention.png" style="display:none;" alt="attention needed - click for more info" title="attention needed - click for more info">
+                    <span id="user_info">Logged in as: &nbsp;<a href="/app/template/XDATScreen_MyXNAT.vm">weigl</a> <b>|</b><span class="tip_icon" style="margin-right:3px;left:2px;top:3px;">
+            <span class="tip shadowed" style="top:20px;z-index:10000;white-space:normal;left:-150px;width:300px;background-color:#ffc;">Your XNAT session will auto-logout after a certain period of inactivity. You can reset that timer without reloading the page by clicking "renew."</span>
+        </span>
+                    Auto-logout in: <b id="timeLeft">-:--:--</b> - <a id="timeLeftRenew" href="javascript:;" onClick="handleOk();">renew</a> <b>|</b> <a id="logout_user" href="/app/action/LogoutUser">Logout</a></span>
+        <script type="text/javascript">
+            jq.cookie(\'guest\',\'false\',{path:\'/\'});
+        </script>
+        <div class="clear"></div>
+</div><!-- /user_bar -->
+
+<script type="text/javascript">
+    jq(document).ready(function(){
+
+        if (jq.cookie(\'WARNING_BAR\') == \'CLOSED\'){
+            jq(\'#attention_icon\').show();
+        }
+        else {
+            jq(\'#warning_bar\').show();
+        }
+
+        jq(\'#attention_icon\').click(function(){
+            jq(\'#warning_bar\').slideToggle(200);
+        });
+
+        jq(\'#warning_bar .close\').click(function(){
+            jq.cookie(\'WARNING_BAR\',\'CLOSED\',{path:\'/\'});
+            jq(\'#warning_bar\').slideUp(200);
+        });
+
+    })
+</script>
+<div id="warning_bar" style="display:none;">
+    <span class="close"><img src="/images/close.gif"></span>
+    <span>
+                    ATTENTION: You have 25 sessions open from 2 distinct IP addresses.
+        <span class="tip_text">(<i>what does this mean?</i>)
+            <span class="tip shadowed">
+                You may have multiple browsers open or may be logged in from more than one computer. If you believe that someone other than you has logged in to your account, please contact your site administrator immediately.
+                The IP addresses are: 141.3.88.82, 141.70.81.139.
+            </span>
+        </span>
+            </span>
+</div>
+
+<div id="header" class="main_header">
+    <a id="header_logo" href="/app/template/Index.vm">
+        \r
+<img class="logo_img" src="/images/logo.png" style="border:none;">    </a>
+
+<!-- search script -->
+<script type="text/javascript">
+<!--
+function DefaultEnterKey(e,button){
+var keynum, keychar, numcheck ;
+
+if(window.event) // IE
+\t{
+\t  keynum = e.keyCode ;
+\t  if (keynum==13){
+\t    submitQuickSearch();
+\t    return true;
+\t  }
+\t}
+else if(e) // Netscape/Firefox/Opera
+\t{
+\t  keynum = e.which ;
+\t  if (keynum==13){
+\t    submitQuickSearch();
+\t    return false;
+\t  }
+\t}
+\t  return true;
+}
+
+function submitQuickSearch(){
+\t    concealContent();
+\t    if(document.getElementById(\'quickSearchForm\').value!="")
+    \t\t   document.getElementById(\'quickSearchForm\').submit();
+}
+
+    function advancedSearch(){
+    \twindow.location="/app/template/XDATScreen_search_wizard1.vm";
+    }
+//-->
+</script>
+<!-- end search script -->
+
+<form id="quickSearchForm" method="post" action="/app/action/QuickSearchAction">
+    <input id="searchValue" name="searchValue" type="text" maxlength="40" size="25" value="" />
+    <a id="search_btn" class="btn1" href="javascript:;" onClick="submitQuickSearch();">Search</a>
+    <a id="advanced_btn" class="btn2" href="javascript:;" onClick="advancedSearch();">Advanced</a>
+</form>
+
+
+    <div id="main_nav">
+        <ul>
+            \t\t\t\t\t\t\t\t<!-- Sequence: 10 -->\r
+<!-- allowGuest: true -->\r
+<li><a href="/app/template/Index.vm" style="padding:0 12px;">Home</a></li>\r
+\t\t\t\t\t\t\t\t\t<!-- Sequence: 20 -->\r
+\r
+<li><a href="#new">New</a>\r
+    <ul>\r
+        \t\t\t\t\t\t\t\t<!-- Sequence: 10 -->\r
+        <li><a href="/app/template/XDATScreen_add_xnat_projectData.vm">Project</a></li>\r
+         <!-- -->\r
+                                                            <li><a href="/app/action/XDATActionRouter/xdataction/edit/search_element/xnat%3AsubjectData/project/MSML_TEST">Subject</a></li>\r
+                                        \r
+                                      <li>
+            <a href="/app/action/XDATActionRouter/xdataction/edit/search_element/xnat%3AmrSessionData/project/MSML_TEST">MR Session</a>
+        </li>
+                          <!-- no object found -->
+                                       <li>
+            <a href="/app/action/XDATActionRouter/xdataction/edit/search_element/xnat%3ActSessionData/project/MSML_TEST">CT Session</a>
+        </li>
+                                            <li><a href="/app/template/XDATScreen_add_experiment.vm/project/MSML_TEST">Experiment</a></li>\r
+                <!-- -->\r
+\t\t\t    </ul>\r
+</li>\r
+\t\t\t\t\t\t\t\t\t<!-- Sequence: 30 -->\r
+<li><a href="#upload">Upload</a>\r
+    <ul>\r
+        \t\t\t\t\t\t\t\t<!-- Sequence: 10 -->\r
+<!-- Upload/Default -->\r
+    <li><a href="/app/template/LaunchUploadApplet.vm">Images</a></li>\r
+    <li><a href="/app/template/XMLUpload.vm">XML</a></li>\r
+    <li><a href="/app/template/XDATScreen_uploadCSV.vm">Spreadsheet</a></li>\r
+    <li><a href="/app/template/XDATScreen_prearchives.vm">Go to prearchive</a></li>\r
+\t\t\t    </ul>\r
+</li>\r
+\t\t\t\t\t\t\t\t\t<!-- Sequence: 40 -->\r
+\t\t\t\t\t\t\t\t\t<!-- Title: Tools -->\r
+<!-- Sequence: 50 -->\r
+<!-- allowGuest: true -->\r
+\r
+<li><a href="#tools">Tools</a>\r
+    <ul>\r
+        \t\t\t\t\t\t\t\t<!-- Sequence: 10 -->\r
+<!-- allowGuest: true -->\r
+<li><a href="https://wiki.xnat.org/display/XNAT16/XNAT+Desktop">XNAT Desktop (XND)</a></li>\r
+<li><a href="http://nrg.wustl.edu/projects/DICOM/DicomBrowser.jsp">DICOM Browser</a></li>\r
+<li><a href="https://wiki.xnat.org/display/XNAT16/XNAT+Client+Tools">Command Prompt Tools</a></li>\r
+\t\t\t    </ul>\r
+</li>\r
+\t\t\t\t\t\t\t\t\t<!-- Sequence: 60 -->\r
+<li><a href="#help">Help</a>\r
+    <ul>\r
+        \t\t\t\t\t\t\t\t<!-- Sequence: 10 -->\r
+<!-- Home/Default -->\r
+    <li><a href="/app/template/ReportIssue.vm">Report a Problem</a></li>\r
+    <li><a href="http://wiki.xnat.org/display/XNAT16/Home" target="_blank">Documentation</a></li>\r
+\t\t\t    </ul>\r
+</li>\r
+\t\t\t        </ul>
+    </div><!-- /main_nav -->
+
+</div>  <!-- /header -->
+
+
+<script type="text/javascript">
+    jq(document).ready(function() {
+
+        // adjust height of header if logo is taller than 65px
+        var hdr_logo_height = jq(\'#header_logo\').height();
+        if (hdr_logo_height > 65) {
+            jq(\'.main_header\').height(hdr_logo_height + 10);
+        }
+
+        // adjust width of main nav if logo is wider than 175px
+        var hdr_logo_width = jq(\'#header_logo\').width();
+        if (hdr_logo_width > 175) {
+            jq(\'#main_nav\').width(932 - hdr_logo_width - 20);
+        }
+
+        //
+        //var recent_proj_height = jq(\'#min_projects_list > div\').height();
+        var recent_proj_height = 67 ;
+        //jq(\'#min_projects_list, #min_expt_list\').height(recent_proj_height * 5).css({\'min-width\':349,\'overflow-y\':\'scroll\'});
+
+    });
+
+    logged_in = true ;
+
+</script>
+
+<script src="/scripts/timeLeft.js"></script>
+<!-- END: xnat-templates/navigations/DefaultTop.vm -->
+
+            <div id="tp_fm"></div>
+        </td>
+    </tr>
+    <tr>
+                    <td class="leftBar" align="left" valign="top">
+                <!-- /xnat-templates/navigations/DefaultLeft.vm -->
+<div class="yui-skin-sam">
+    <table id="left_bar_table" style="margin:0 10px 0 0;padding:0;" cellpadding="0" cellspacing="0">
+        
+        <tr>
+            <td valign="top" style="padding:10px;border:solid 1px #d0d0d0">
+                <div id="l_tv"></div>
+                <div style="width:160px">&nbsp;</div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+//build element_array
+ var lTV = new LeftBarTreeView({treeview:"l_tv"});
+
+ lTV.loadNodeData=function(node, fnLoadComplete)  {
+    var tabReqObject= node.data;
+    tabReqObject.label=node.label;
+    tabReqObject.node=node;
+    if(tabReqObject.URL!=undefined){
+    \t   window.location=serverRoot +"/app/template/Search.vm/node/"+ tabReqObject.ID;
+    }else{
+    \t   if(tabReqObject.ID!=undefined && tabReqObject.ID=="ss"){
+       \t    var callback={
+                cache:false, // Turn off caching for IE
+       \t      success:function(oResponse){
+       \t        var oResults = eval("(" + oResponse.responseText + ")");
+       \t        if((oResults.ResultSet.Result) && (oResults.ResultSet.Result.length)) {
+                   for (var ssC=0; ssC<oResults.ResultSet.Result.length;  ssC++) {
+                       var cpNode=new YAHOO.widget.TextNode({label:oResults.ResultSet.Result[ssC].brief_description,
+\t                         \t\tID:"ss."+oResults.ResultSet.Result[ssC].id,
+\t                         \t\tSS_ID:oResults.ResultSet.Result[ssC].id,
+\t                         \t\tURL:serverRoot +\'/REST/search/saved/\' + oResults.ResultSet.Result[ssC].id + \'\',
+\t                         \t\tTITLE:oResults.ResultSet.Result[ssC].description},oResponse.argument.node,false);
+                   }
+               }
+       \t        oResponse.argument.fnLoadComplete();
+       \t      },
+       \t      failure:function(oResponse){
+       \t        oResponse.argument.fnLoadComplete();
+       \t      },
+       \t      argument:{"node":node,"fnLoadComplete":fnLoadComplete}
+       \t    };
+
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t           //YAHOO.util.Connect.asyncRequest(\'GET\',this.obj.URL,this.initCallback,null,this);
+       \t    YAHOO.util.Connect.asyncRequest(\'GET\',serverRoot +\'/REST/search/saved?XNAT_CSRF=" + window.csrfToken + "&format=json&stamp=\'+ (new Date()).getTime(),callback,null);
+       }else{
+    \t   \t    fnLoadComplete();
+       }
+    }
+ }
+
+ lTV.init();
+
+</script>
+<!-- end /xnat-templates/navigations/DefaultLeft.vm -->
+
+            </td>
+                <td align="left" valign="top">
+            <div id="breadcrumbs"></div>\r
+<div>&nbsp;</div>\r
+<script language="javascript">\r
+  var breadcrumbs=document.getElementById(\'breadcrumbs\');\r
+   \r
+  if (breadcrumbs!=null){\r
+   if (breadcrumbs.innerHTML==""){\r
+    var bread = "";\r
+\r
+\r
+\r
+//HAS OM\r
+//projectData\r
+    \r
+ breadcrumbs.innerHTML=bread;\r
+   }\r
+  }\r
+</script>\r
+
+            <div id="layout_content2" style="display:none;">Loading...</div>
+            <div id="layout_content">
+                <!--BEGIN SCREEN CONTENT -->
+                <script language="javascript">
+var server= "/images/";
+var user_email= "Alexander.Weigl@student.kit.edu";
+</script>
+<style>
+IMG{
+ border:0;
+}
+</style>
+\t<STYLE>
+\t TABLE.dataTable{
+\t   cellpadding:0;
+\t   cellspacing:0;
+\t   width:100%;
+\t   border:0;
+\t }
+\t TR.resultsHEADER{
+\t   background-color:#FFFFFF;
+\t }
+\t</STYLE>
+<DIV class="yui-skin-sam" style="">
+<div id="tp_fm" style="display:none"></div>
+\t\t\t\t\t\t\t\t <TABLE width="98%" style="">
+  <TR>
+\t   <TD valign="top" width="680">
+<DIV class="edit_header1" style="">MSML Test Project</DIV><BR/>
+<script type="text/javascript" src="/scripts/yui/build/resize/resize-beta-min.js"></script>
+<script type="text/javascript" src="/scripts/yui/build/layout/layout-beta-min.js"></script>
+
+<script type="text/javascript" src="/scripts/generated/xdat_stored_search.js"></script>
+<script type="text/javascript" src="/scripts/generated/xdat_search_field.js"></script>
+<script type="text/javascript" src="/scripts/generated/xdat_criteria.js"></script>
+<script type="text/javascript" src="/scripts/generated/xdat_criteria_set.js"></script>
+<script type="text/javascript" src="/scripts/search/tabManager.js"></script>
+<script type="text/javascript" src="/scripts/search/saveSearch.js"></script>
+<script type="text/javascript" src="/scripts/search/searchManager.js"></script>
+<script type="text/javascript" src="/scripts/search/dataTableSearch.js"></script>
+<script type="text/javascript" src="/scripts/search/dataTableStoredSearch.js"></script>
+<script type="text/javascript" src="/scripts/yui/xnat_loader.js"></script>
+<!-- BEGIN SET AND PARSE SUMMARY TABS -->
+\t\t\t\t<!-- BEGIN xnat-templates/screens/xnat_projectData/xnat_projectData_summary_tabs.vm -->
+<style>
+span.spacer{
+height:12px;
+width:1px;
+}
+</style>
+<div ID="project_summary_module" style="display:none">
+\t<div id="projectSummary" class="yui-navset">
+\t\t<ul class="yui-nav">
+      <li class="selected"><a href="#tab1"><em>Details<span class="spacer"></span></em></a></li>
+\t\t  \t\t\t\t\t<li><a href="#tab3"><em>Access<span class="spacer"></span></em></a></li>
+\t\t\t\t\t<li><a href="#othermgmt"><em>Manage<span class="spacer"></span></em></a></li>
+\t\t\t\t\t<li><a href="#tab4"><em>Pipelines<span class="spacer"></span></em></a></li>
+              
+  </ul>
+ <div class="yui-content">   
+\t\t\t<div id="tab1">
+\t\t\t\t<p><table>
+ <tr>
+  <th align="left">ID:</th>
+  <td>MSML_TEST 
+  </td>
+ </tr>  
+ <tr>
+  <th align="left" valign="top">Description:</th>
+  <td>
+    \t    This project is for testing the API with MSML and MSML-Wizard
+    </td>
+ </tr> 
+</table>
+\t\t\t    \t\t\t\t\t\t      <BR><A ID="button1" href="/app/action/XDATActionRouter/xdataction/edit/search_element/xnat%3AprojectData/search_field/xnat%3AprojectData.ID/search_value/MSML_TEST/popup/false">Edit Details</A>
+\t\t\t    \t\t\t\t\t\t         <A ID="button3" href="/app/action/XDATActionRouter/xdataction/delete/search_element/xnat%3AprojectData/search_field/xnat%3AprojectData.ID/search_value/MSML_TEST/popup/false">Delete</A>
+\t\t\t\t\t\t    \t\t\t\t\t\t    <A ID="button5" href="/app/action/XDATActionRouter/xdataction/protocols/search_element/xnat%3AprojectData/search_field/xnat%3AprojectData.ID/search_value/MSML_TEST/popup/false">Manage Custom Variables</A>
+
+\t\t\t\t\t\t </p>
+\t\t\t</div>  
+
+ \t\t\t\t\t<div id="tab3">
+\t\t\t\t\t\t<p>
+
+
+
+<script type="text/javascript" src="/scripts/project/userMgmt.js"></script>\t\t\t\t\t\t         
+
+\t\t\t\t\t\t<table class="mgmt_container">
+ <tr>
+  <td valign="top">
+   <label><input id="showDeactivatedUsersCheck" type="checkbox" onclick="window.userManager.reloadUsersForProject();">Show Deactivated Users</label>
+   <div id="user_mgmt_div"></div>
+  </td>
+  <td valign="top">
+   <div id="user_invite_div">
+<TABLE>
+ <TR>
+  <TD COLSPAN="3"><h4 id="add_invite_user_header" style="margin-bottom:0px">Add/Invite User</h4>
+  Enter the email address of the user to add.</TD>
+ </TR>
+ <TR>
+  <TD COLSPAN="3" NOWRAP><INPUT type="text" name="email" ID="invite_email" style="margin-bottom:3px"/>
+   <BR><select name="access_level" id="access_level" style="margin-bottom:3px"><option value="collaborator">Collaborator</option><option value="member">Member</option><option value="owner">Owner</option></select>
+   <BR><input type="button" value="Add User" name="eventSubmit_doPerform" ID="invite_user_button" ONCLICK="window.userManager.inviteUserFromForm();"/>
+  </TD>
+ </TR>
+ <TR>
+  <TD COLSPAN="3">&nbsp;</TD>
+ </TR>
+ <TR>
+  <TD COLSPAN="3"><h4 id="user_list_header" style="margin-bottom:0px">Add Users from List</h4></TD>
+ </TR>
+ <TR>
+  <TD COLSPAN="3" NOWRAP>
+  <input type="button" id="popup_all_users_button" disabled="true" value="Show List" ONCLICK="window.userManager.popupAllUsersBox();"/>
+  </TD>
+ </TR>
+</TABLE>
+   </div>
+  </td>
+ </tr>
+  <tr><td>&nbsp;</td></tr>
+ <tr>
+  <td colspan="2" class="highlighted" id="access_container">
+<input type="hidden" id="current_accessibility" value="protected"/>
+\t\t\t\t\t\t       <DIV style="font-weight:700;">&nbsp;Define Default Project Accessibility</DIV>
+       <TABLE cellpadding="5" cellspacing="0">
+            <TR><TD NOWRAP><input id="private_access" onclick="if(document.getElementById(\'current_accessibility\').value!=this.value)document.getElementById(\'accessibility_save\').disabled=false;else document.getElementById(\'accessibility_save\').disabled=true;" type="radio" name="accessibility" value="private" /> Private</TD><TD>Only you and study members will be able to access study data.</TD></TR>
+            <TR><TD NOWRAP><input id="protected_access" onclick="if(document.getElementById(\'current_accessibility\').value!=this.value)document.getElementById(\'accessibility_save\').disabled=false;else document.getElementById(\'accessibility_save\').disabled=true;" type="radio" name="accessibility" value="protected" CHECKED /> Protected</TD><TD>All users will be able to see your study title and description, but only collaborators you approve will be able to analyze and download data.</TD></TR>
+            <TR><TD NOWRAP><input id="public_access" onclick="if(document.getElementById(\'current_accessibility\').value!=this.value)document.getElementById(\'accessibility_save\').disabled=false;else document.getElementById(\'accessibility_save\').disabled=true;" type="radio" name="accessibility" value="public" /> Public</TD><TD>All users will be able to access study data for analysis and download.</TD></TR>
+            <TR><TD COLSPAN="2"><input type="button" onclick="(new DefaultAccessibilityManager(document.getElementById(\'access_container\'),\'MSML_TEST\')).set();" id="accessibility_save" value="Save" disabled="true"/></TD></TR>
+       </TABLE>
+\t\t\t\t\t\t  </td>
+\t\t\t\t\t\t </tr>
+ <tr>
+  <td colspan="2" class="highlighted" id="invite_container">
+\t\t\t\t\t\t       <DIV style="font-weight:700;">&nbsp;Project Invitations</DIV>
+<script type="text/javascript" src="/scripts/project/parManager.js"></script>
+<div id="pil"></div>
+</div>
+<script type="text/javascript">
+var parList=new PARManager("pil",{URI:serverRoot+"/REST/projects/MSML_TEST/pars",projectBased:true});
+parList.init();
+</script>
+\t\t\t\t\t\t  </td>
+\t\t\t\t\t\t </tr>
+\t\t\t\t\t\t</table>
+<script language="javascript">
+function summaryUserTabChange(obj){
+   if(obj.newValue.get("href")=="#tab3"){
+            if (window.userManager == undefined) {
+                window.userManager = new UserManager("user_mgmt_div", "MSML_TEST", true);
+            }
+   }
+}
+
+function addUserMgmtMonitor(){
+    if(window.summaryTabView.get("activeTab").get("href")=="#tab3"){
+            if (window.userManager == undefined) {
+                window.userManager = new UserManager("user_mgmt_div", "MSML_TEST", true);
+            }
+    }else{
+        window.summaryTabView.subscribe("activeTabChange",summaryUserTabChange);
+    }
+}
+\t
+YAHOO.util.Event.onDOMReady(addUserMgmtMonitor);
+\t
+</script></p>
+\t\t\t\t\t</div>
+\t\t\t \t\t<div id="othermgmt">
+\t\t\t \t\t\t<p>
+
+
+
+
+<script type="text/javascript" src="/scripts/settingsManager.js"></script>\t
+ <table id="quarantine_table">
+  <tr>
+   <td colspan="2" class="highlighted" id="quarantine_container">
+\t <DIV style="font-weight:700;">&nbsp;Define Quarantine Settings</DIV>
+       <TABLE cellpadding="5" cellspacing="0">
+            <TR><TD NOWRAP><input id="yes_quarantine" type="radio" name="quarantine" value="1" /> YES</TD><TD>All new experiments (and modified experiments) are placed into a quarantine state and must be specifically activated.</TD></TR>
+            <TR><TD NOWRAP><input id="no_quarantine"  type="radio" name="quarantine" value="0" CHECKED /> NO</TD><TD>New and modified experiments will not be placed in Quarantine.</TD></TR>
+            <TR><TD COLSPAN="2"><input type="button" id="project_quarantine_save" value="Save" disabled="true"/></TD></TR>
+       </TABLE>
+  </td>
+ </tr>
+</table>
+<script>
+window.quarantine=(new RadioSettingsManager(document.getElementById(\'quarantine_container\'),{\'URI\':serverRoot+\'/REST/projects/MSML_TEST/quarantine_code/\',\'radio_ids\':[\'yes_quarantine\',\'no_quarantine\'],\'current_value\':\'0\',\'button\':\'project_quarantine_save\'}));
+</script>\t\t
+\t<br/>
+<table id="prearchive_table">
+ <tr>
+  <td colspan="2" class="highlighted" id="prearchive_container">
+\t<DIV style="font-weight:700;">&nbsp;Define Prearchive Settings</DIV>
+       <TABLE cellpadding="5" cellspacing="0">
+            <TR><TD NOWRAP><input id="0_prearchive" type="radio" name="prearchive" value="0" CHECKED/></TD><TD>All image data should be placed in a temporary location (prearchive) before being manually transferred into the permanent archive.</TD></TR>
+            <TR><TD NOWRAP><input id="4_prearchive"  type="radio" name="prearchive" value="4"  /></TD><TD>All image data will be placed into the archive automatically, but anything matching existing files will be rejected.  Data which doesn\'t match a pre-existing project will be placed in an \'Unassigned\' project.</TD></TR>
+            <TR><TD NOWRAP><input id="5_prearchive"  type="radio" name="prearchive" value="5"  /></TD><TD>All image data will be placed into the archive automatically and will overwrite existing files.  Data which doesn\'t match a pre-existing project will be placed in an \'Unassigned\' project.</TD></TR>
+            <TR><TD COLSPAN="2"><input type="button" id="project_prearchive_save" value="Save" disabled="true"/></TD></TR>
+       </TABLE>
+  </td>
+ </tr>
+</table>
+<script>
+window.prearchive=(new RadioSettingsManager(document.getElementById(\'prearchive_container\'),{\'URI\':serverRoot+\'/REST/projects/MSML_TEST/prearchive_code/\',\'radio_ids\':[\'0_prearchive\',\'4_prearchive\',\'5_prearchive\'],\'current_value\':\'0\',\'button\':\'project_prearchive_save\'}));
+</script>
+<table id="script_table">
+  <tr>
+    <td colspan="2" class="highlighted" id="script_container">
+      <DIV style="font-weight:700;">Anonymization Script</DIV>
+      <TABLE>
+\t<TR><TD><input id="enable_anon_script" type="radio" name="anon_script" value="true"/></TD><TD>Enable</TD></TR>
+\t<TR><TD><input id="disable_anon_script" type="radio" name="anon_script" value="false"/></TD><TD>Disable</TD></TR>
+\t<TR><TD></TD><TD><textarea id="script_text_area" rows="20" cols="80"></textarea></TD></TR>
+\t<TR><TD COLSPAN="2"><input type="button" id="anon_script_save" value="Save" disabled="true"/></TD></TR>
+      </TABLE>      
+    </td>
+  </tr>
+</table>
+<script>
+  var sg = new scriptGet(document.getElementById(\'script_container\'),
+            { 
+\t       \'getStatus\' : serverRoot + \'/data/config/edit/projects/MSML_TEST/image/dicom/status?format=json\',
+\t       \'putStatus\' : serverRoot + \'/data/config/edit/projects/MSML_TEST/image/dicom/status?activate=\',
+\t       \'getScript\' : serverRoot + \'/data/config/edit/projects/MSML_TEST/image/dicom/script?format=json\',
+\t       \'putScript\' : serverRoot + \'/data/config/edit/projects/MSML_TEST/image/dicom/script?inbody=true\',
+\t       \'project\' : \'MSML_TEST\',
+\t       \'enable_radio\' : \'enable_anon_script\',
+\t       \'disable_radio\' : \'disable_anon_script\',
+\t       \'script_text_area\' : \'script_text_area\',
+\t       \'save_button\' : \'anon_script_save\'
+\t    });
+  sg.get();\t    
+</script>
+\t\t\t\t\t\t\t\t<table id="notif_script_table">\r
+  <tr>\r
+    <td colspan="2" class="highlighted" id="notif_script_container">\r
+      <DIV style="font-weight:700;">Notifications Configuration</DIV>\r
+      <TABLE>\r
+\t<TR><TD></TD><TD>Emails should be comma separated (i.e. tim@somewhere.com,jenny@somewhere.com).</TD></TR>\r
+\t<TR><TD></TD><TD><input type="text" name="notif_list" id="notif_list" SIZE="100"/></TD></TR>\r
+\t<TR><TD COLSPAN="2"><input type="button" id="notif_script_save" value="Save" onclick="XNAT.app.notifUpdate();" /></TD></TR>\r
+      </TABLE>      \r
+    </td>\r
+  </tr>\r
+</table>\r
+<script>\r
+  \tXNAT.app.notifUpdate=function(){\r
+        this.notifs=YUIDOM.get("notif_list").value;\r
+        if(this.notifs.indexOf("\'")>-1 || this.notifs.indexOf("\\"")>-1){\r
+        \talert("Notification emails cannot contains quotes.");\r
+        \treturn false;\r
+        }\r
+        openModalPanel(\'notifs\',\'Saving Emails\');\r
+        YAHOO.util.Connect.asyncRequest(\'PUT\',serverRoot+"/data/projects/MSML_TEST/resources/notifications/files/archival.lst?inbody=true&overwrite=true&content=NOTIFY_ARCHIVAL&XNAT_CSRF=" + window.csrfToken,\r
+        {\t\r
+        \tsuccess : function()\r
+        \t{\r
+        \t\tcloseModalPanel(\'notifs\');\r
+        \t\talert("Emails updated.");\r
+        \t},\r
+        \t failure: function(){\r
+        \t \tcloseModalPanel(\'notifs\');\r
+        \t \talert("Failed to store emails");\r
+        \t },\r
+             cache:false, // Turn off caching for IE\r
+        \t scope: this\r
+        },\r
+         this.notifs);\r
+  \t}\r
+ \tXNAT.app.notifsLoad=function(obj){\r
+      \tYUIDOM.get("notif_list").value = obj.responseText;\r
+  \t}\r
+  \r
+  YAHOO.util.Connect.asyncRequest(\'GET\', serverRoot+\'/data/projects/MSML_TEST/resources/notifications/files/archival.lst\', {success : XNAT.app.notifsLoad, failure : function(){}, cache : false, scope : this});\r
+</script>\t\t\t</p>
+\t\t\t\t\t</div>
+\t\t\t\t\t<div id="tab4">
+\t\t\t\t\t\t<p>\t<!-- Source file --> 
+\t<script type="text/javascript" src="/scripts/yui/build/logger/logger-min.js"></script> 
+
+\t\t<link type="text/css" rel="stylesheet" href="/scripts/yui/build/fonts/fonts.css">
+\t\t<!--<link type="text/css" rel="stylesheet" href="/scripts/yui/build/reset/reset.css">-->
+
+\t\t<script type="text/javascript" src="/scripts/yui/build/animation/animation.js" ></script>
+
+<script type="text/javascript" src="/scripts/project/pipelineMgmt.js"></script>
+
+<div id="waitPanel"></div>
+
+
+
+<table class="mgmt_container">
+ <tr>
+  <td valign="top" >
+   <div id="pipeline_mgmt_div"></div>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top">
+  <div id="buttons"> 
+  \t    <span id="add" class="yui-button yui-push-button"> 
+  \t        <span class="first-child"> 
+  \t            <button type="button">Add More Pipelines</button> 
+  \t        </span> 
+\t    </span> 
+   </div>\t    
+  
+   </td>
+ </tr>
+<tr>
+  <td ><div id="myLogger"></div> </td>
+</tr>
+
+<div id="content"></div>
+
+</table>
+
+
+
+
+
+<script language="javascript">
+
+
+
+
+ var handleOK = function() { 
+       this.hide(); 
+ }; 
+\t 
+
+var dlg = new YAHOO.widget.SimpleDialog(\'widget_alert\', { 
+\t            visible:false, 
+\t            width: \'20em\', 
+\t            zIndex: 9999, 
+\t            close: false, 
+\t            fixedcenter: true, 
+\t            modal: false, 
+\t            draggable: true, 
+\t            constraintoviewport: true,  
+\t            icon: YAHOO.widget.SimpleDialog.ICON_WARN, 
+\t            buttons: [ 
+\t                { text: \'OK\', handler: handleOK, isDefault: true } 
+\t                ] 
+\t        }); 
+
+function summaryTabChange(obj){
+   if(obj.newValue.get("href")=="#tab4"){
+        if(window.pipelineManager==undefined)window.pipelineManager  = new PipelineManager("pipeline_mgmt_div","MSML_TEST");
+\twindow.pipelineManager.getPipelines();
+   }
+};
+
+var xnatalert = function(str) { 
+\t        dlg.setBody(str); 
+\t        dlg.cfg.queueProperty(\'icon\', YAHOO.widget.SimpleDialog.ICON_WARN); 
+\t        dlg.cfg.queueProperty(\'zIndex\', 9999); 
+\t        dlg.render(document.body); 
+\t        if (dlg.bringToTop) { 
+\t            dlg.bringToTop(); 
+\t        } 
+\t        dlg.show(); 
+\t    }; 
+
+function initComponents() {
+   dlg.setHeader("Alert!"); 
+   dlg.setBody(\'Alert body passed to window.alert\'); // Bug in panel, must have a body when rendered 
+   dlg.render(document.body); 
+
+
+    var addButton = new YAHOO.widget.Button("add");
+    
+    function addClick(e) { 
+\tvar label = this.get("label");
+\tvar addMoreText = "Add More Pipelines";
+\tvar showMineText = "Show Project Pipelines";
+
+\tif (label == addMoreText) {
+\t  window.pipelineManager.getAdditionalPipelines();
+\t  addButton.set(\'label\',showMineText);
+\t}else {
+\t  window.pipelineManager.getPipelines();
+\t  addButton.set(\'label\',addMoreText);
+\t}
+    }; 
+    
+    addButton.on("click", addClick); 
+
+}
+
+
+function addMonitor(){
+    initComponents();
+
+    if(window.summaryTabView.get("activeTab").get("href")=="#tab4"){
+        if(window.pipelineManager==undefined) {
+\t\twindow.pipelineManager  = new PipelineManager("pipeline_mgmt_div","MSML_TEST");
+\t\twindow.pipelineManager.getPipelines();
+\t}
+    }else{
+        window.summaryTabView.subscribe("activeTabChange",summaryTabChange);
+    }
+};
+\t
+YAHOO.util.Event.onDOMReady(addMonitor);
+
+\t
+</script>
+
+
+
+</p>
+\t\t\t\t\t</div>
+             
+  </div> 
+</div>
+</div>
+
+<script type="text/javascript">   
+function summaryIndexChanged(){
+   var activeIndex=this.get("activeIndex");
+   YAHOO.util.Cookie.set("MSML_TEST.summary.index",activeIndex);
+}
+   
+function summaryTabManagerInit(){
+    window.summaryTabView = new YAHOO.widget.TabView(\'projectSummary\');   
+    var oButton1= new YAHOO.widget.Button("button1");
+    var oButton2= new YAHOO.widget.Button("button2");
+        var oButton3= new YAHOO.widget.Button("button3");
+            var oButton4= new YAHOO.widget.Button("button4");
+    var oButton5= new YAHOO.widget.Button("button5");
+    
+
+    window.project_summary_module = new YAHOO.widget.Module("project_summary_module",{visible:false,zIndex:5});
+\t
+\t\t    
+    window.project_summary_module.show(); \t\t    
+    
+        var tabIndex=YAHOO.util.Cookie.get("MSML_TEST.summary.index");
+    window.summaryTabView.set(\'activeIndex\',tabIndex||0);
+        window.summaryTabView.subscribe("activeTabChange",summaryIndexChanged);
+\t
+\t\t\t\t\t}
+\t\t\t\t\tsummaryTabManagerInit();
+</script>
+<!-- END xnat-templates/screens/xnat_projectData/xnat_projectData_summary_tabs.vm -->
+<!-- END SET AND PARSE SUMMARY TABS -->
+\t   </TD>
+\t   <TD valign="top" width="120" align="left">
+    <!-- actions menu -->
+    <DIV id="actionsMenu" class="yuimenu">
+     <DIV class="bd">
+      <ul class="first-of-type">
+           \t<li class="yuimenuitem">
+            <a class="yuimenuitemlabel">Actions</a>
+           </li>
+      </ul>
+      <ul>
+\t\t
+\t\t\t\t\t\t\t\t\t<!-- Sequence: 5 -->\r
+\r
+<!-- xnat_projectData/actionsBox/Add -->\r
+\r
+\t\t\t\t           <li class="yuimenuitem"> \r
+            <a class="yuimenuitemlabel" href="#insertbox">Add</a>\r
+            <DIV ID="insertbox" class="yuimenu">\r
+             <DIV class="bd">\r
+              <ul class="first-of-type" style="width: 500px;">\r
+              <li class="yuimenuitem">\r
+                <a class="yuimenuitemlabel" href="/app/template/XDATScreen_edit_xnat_subjectData.vm/project/MSML_TEST">Subject</A>\r
+              </li>\r
+                        \t     <li class="yuimenuitem">\r
+                <a class="yuimenuitemlabel" href="/app/template/XDATScreen_edit_xnat_ctSessionData.vm/project/MSML_TEST">CT Session</A>\r
+               </li>\r
+                                      \t               \t     <li class="yuimenuitem">\r
+                <a class="yuimenuitemlabel" href="/app/template/XDATScreen_edit_xnat_mrSessionData.vm/project/MSML_TEST">MR Session</A>\r
+               </li>\r
+                                           <li class="yuimenuitem">\r
+                <a class="yuimenuitemlabel" href="/app/template/XDATScreen_add_experiment.vm/project/MSML_TEST">More</A>\r
+               </li>\r
+              </ul>\r
+             </DIV>\r
+            </DIV>\r
+           </li>\r
+           <li class="yuimenuitem">\r
+            <a class="yuimenuitemlabel" href="/app/action/XDATActionRouter/xdataction/LaunchUploadApplet/project/MSML_TEST">Upload Images</A>\r
+            \r
+           </li>\r
+           <li class="yuimenuitem">\r
+            <a class="yuimenuitemlabel" href="/app/action/XDATActionRouter/xdataction/prearchives/project/MSML_TEST">View Prearchive</A>\r
+           </li>\r
+\t\t   <li class="yuimenuitem">\r
+            <a class="yuimenuitemlabel" href="/app/action/XDATActionRouter/xdataction/scanTypeCleanup/search_element/xnat%3AprojectData/search_field/xnat%3AprojectData.ID/search_value/MSML_TEST/popup/false">Scan Type Cleanup</A> \r
+           </li>\r
+      </ul>\r
+      <ul>\r
+\t\t\t\t\t\t\t\t\t<!-- Sequence: 10 -->\r
+\r
+\t           <li class="yuimenuitem">\r
+            <a id="favorite_a" class="yuimenuitemlabel" href="" onclick="toggleFavorites();return false;">\r
+            Remove from Favorites</A>\r
+           </li>\r
+\t\t\t\r
+<SCRIPT language="javascript">\r
+function toggleFavorites(){\r
+  window.currentStatus="true";\r
+  if(window.currentStatus=="true"){\r
+    var initCallback={\r
+\t\t\t\t\t\t      success:function(o){\r
+\t\t\t\t\t\t    \t    document.getElementById("favorite_a").innerHTML="Add To Favorites";\r
+\t\t\t\t\t\t    \t    window.currentStatus="false";\r
+      },\r
+\t\t\t      failure:function(o){\r
+\t\t\t      \r
+\t\t\t\t      },\r
+                cache:false, // Turn off caching for IE\r
+\t\t\t      scope:this\r
+\t\t    }\r
+    YAHOO.util.Connect.asyncRequest(\'DELETE\',serverRoot+"/REST/users/favorites/Project/MSML_TEST?XNAT_CSRF="+csrfToken,initCallback);\r
+  }else{\r
+    var initCallback={\r
+\t\t\t\t\t\t      success:function(o){\r
+\t\t\t\t\t\t    \t    document.getElementById("favorite_a").innerHTML="Remove From Favorites";\r
+\t\t\t\t\t\t    \t    window.currentStatus="true";\r
+      },\r
+\t\t\t      failure:function(o){\r
+\t\t\t      \r
+\t\t\t\t      },\r
+                cache:false, // Turn off caching for IE\r
+\t\t\t      scope:this\r
+\t\t    }\r
+    YAHOO.util.Connect.asyncRequest(\'PUT\',serverRoot+"/REST/users/favorites/Project/MSML_TEST?XNAT_CSRF="+csrfToken,initCallback);\r
+  }\r
+}\r
+</SCRIPT>\t\t\t\t\t\t\t\t\t<!-- Sequence: 15 -->\r
+\r
+\t           <li class="yuimenuitem">\r
+            <a class="yuimenuitemlabel" href="/app/action/XDATActionRouter/xdataction/xml_file/search_element/xnat%3AprojectData/search_field/xnat%3AprojectData.ID/search_value/MSML_TEST/popup/false">Download XML</A>\r
+           </li>\t\t\t\t\t\t\t\t\t<!-- Sequence: 20 -->\r
+\r
+   <li class="yuimenuitem">\r
+    <a class="yuimenuitemlabel" href="/app/action/ProjectDownloadAction/project/MSML_TEST">Download Images</A>\r
+   </li>\t\t\t\t\t\t\t\t\t     <li class="yuimenuitem">\r
+\t\t\t<A href="" ONCLICK="window.viewer.render();return false;">\r
+\t\t\t\t<div class="ic">\r
+\t\t\t\t\t<img border="0" src="/scripts/yui/build/treeview/assets/img/folders/cf.gif"/>\r
+\t\t\t\t</div>\r
+\t\t\t\t<div class="ic_spacer">&nbsp;</div>\r
+\t\t\t\tManage Files\r
+\t\t\t</A>\r
+\t </li>\r
+\t \t\t\t\t\t<!--BEGIN /screens/xnat_subjectData/xnat_subjectData_resources.vm -->\r
+<script type="text/javascript" src="/scripts/FileViewer.js"></script>\r
+<script type="text/javascript">\r
+  \tvar obj=new Object();\r
+  \tobj.uri=serverRoot + "/REST/projects/MSML_TEST";\r
+  \r
+  \t\t      obj.canEdit=true;\r
+      \t          obj.canDelete=true;\r
+    \r
+  obj.catalogs=new Object();\r
+  obj.catalogs.ids=new Array();\r
+  window.viewer=new FileViewer(obj);\r
+    \r
+  function showFiles(){\r
+    window.viewer.render();\r
+  }\r
+</script>\r
+<style type="text/css">   \r
+\t/* custom styles for inline instances */\r
+.yui-skin-sam .yui-ac-input { position:static;width:20em; vertical-align:middle;}\r
+.yui-skin-sam .yui-ac-container { width:20em;left:0px;}\r
+\r
+/* buttons */\r
+.yui-ac .yui-button {vertical-align:middle;}\r
+.yui-ac .yui-button button {background: url(/scripts/yui/build/autocomplete/assets/img/ac-arrow-rt.png) center center no-repeat }\r
+.yui-ac .open .yui-button button {background: url(/scripts/yui/build/autocomplete/assets/img/ac-arrow-dn.png) center center no-repeat}\r
+\r
+/* custom styles for scrolling container */ \r
+\t#type_auto_div { \r
+    padding-bottom:2em; \r
+\t}\r
+\t#type_auto_div .yui-ac-content { \r
+    max-height:20em;overflow:auto;overflow-x:hidden; /* set scrolling */ \r
+    _height:20em; /* ie6 */ \r
+\t} \r
+\t\r
+  .icon-of { display:block; height: 19px; padding-left: 20px; background: transparent url(/scripts/yui/build/treeview/assets/img/folders/of.gif) no-repeat;}\r
+  .icon-f { display:block; font-size:11px; height: 17px; padding-left: 4px;}\r
+  .icon-cf { display:block; height: 19px; padding-left: 20px; background: transparent url(/scripts/yui/build/treeview/assets/img/folders/cf.gif) no-repeat;} \r
+  .ygtvcheck0 { background: url(/scripts/yui/build/treeview/assets/img/check/check0.gif) 0 0 no-repeat; width:16px; cursor:pointer }\r
+  .ygtvcheck1 { background: url(/scripts/yui/build/treeview/assets/img/check/check1.gif) 0 0 no-repeat; width:16px; cursor:pointer }\r
+  .ygtvcheck2 { background: url(/scripts/yui/build/treeview/assets/img/check/check2.gif) 0 0 no-repeat; width:16px; cursor:pointer }\r
+</style>\r
+\t\t\t\t
+      </ul>
+     </DIV>
+    </DIV>
+<SCRIPT>
+YAHOO.util.Event.onContentReady("actionsMenu", function () {
+    var actionsMenu = new YAHOO.widget.Menu("actionsMenu", { autosubmenudisplay: true,scrollincrement:5,position:"static",maxheight:150});
+    // Render the MenuBar instance
+    actionsMenu.getItem(0).cfg.setProperty("disabled",true);
+    actionsMenu.render();
+});
+</SCRIPT>
+   </TD>
+\t   <TD>
+   </TD>
+\t  </TR>
+\t\t\t\t\t  <TR>
+\t   <TD colspan="3">
+\t              <div id="paginator"></div>
+    <BR>
+    <div id="tab_module">
+    <div class="bd">
+    <div id="search_tabs"></div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+    var stored_searches=new Array();
+stored_searches.push({ID:"@xnat:subjectData",label:"Subjects",URL:serverRoot +"/REST/projects/MSML_TEST/searches/@xnat:subjectData"});
+        stored_searches.push({ID:"@xnat:ctSessionData",label:"CT Sessions",URL:serverRoot +"/REST/projects/MSML_TEST/searches/@xnat:ctSessionData"});
+    
+var url = "/servlet/AjaxServlet";
+url = url + "";
+
+var currentTime = new Date();
+var pageID = currentTime.getTime() + \'_\';
+
+
+function openTabsChange(obj){
+    YAHOO.util.Cookie.remove("MSML_TEST.open_bundle.tabs");
+    var bundles=this.loaded.toString();
+    YAHOO.util.Cookie.set("MSML_TEST.open_bundle.tabs",bundles, { expires: new Date("January 12, 2025") });
+    //alert(bundles + ":" +YAHOO.util.Cookie.get("MSML_TEST.open_bundle.tabs"));
+    //wrangleTabs({
+    //    wrapper: \'#search_tabs\', // selector for element where tabs will be rendered by YUI - use \'body\' to hit all tab sets
+    //    force: true // do we show it even if the tabs aren\'t too wide?
+    //});
+    //wrangleTabs(\'#search_tabs\');
+    //console.debug(\'openTabsChange(\'+obj+\')\');
+}
+
+function TabManagerInit(){
+
+    var tab_module=new YAHOO.widget.Module("tab_module",{visible:true});
+
+    window.tab_manager=new TabManager();
+    
+    window.tab_manager.setCsrfToken("64ddf2ca-c22a-4078-baf4-43946ef38e09");
+    
+    window.tab_manager.init(stored_searches);
+    
+    var bundles=YAHOO.util.Cookie.get("MSML_TEST.open_bundle.tabs");
+    if(bundles==null){
+\t\twindow.tab_manager.load({ID:\'@xnat:subjectData\'});
+    }else{
+\t\tvar open_tab_array=bundles.split(\',\');
+    \tfor(var open_tab_counter=0;open_tab_counter<open_tab_array.length;open_tab_counter++){
+            var open_tab = open_tab_array[open_tab_counter];
+\t    \twindow.tab_manager.load({ID:open_tab});\t
+        }
+    }
+    
+    var bundleTabIndex=YAHOO.util.Cookie.get("MSML_TEST.open_bundle.index");
+    if(bundleTabIndex!=null){
+\twindow.tab_manager.setActiveTab(parseInt(bundleTabIndex));
+\t//window.tab_manager.tabView.set(\'activeIndex\',parseInt(bundleTabIndex));
+    }
+    
+    window.tab_manager.onOpenTabsChange.subscribe(bundleTabChange,this);
+    window.tab_manager.onOpenTabsChange.subscribe(openTabsChange,window.tab_manager);
+
+    //console.debug(\'TabManagerInit()\');
+
+}
+
+function debug_out(msg){
+    var div=document.getElementById("mylogger");
+    if(div!=undefined && div!=null){
+\tdiv.innerHTML+=msg + "<br/>";
+    }
+}
+
+YAHOO.util.Event.onDOMReady(TabManagerInit);
+
+function bundleTabChange(obj){
+    var activeIndex=this.get("activeIndex");
+    YAHOO.util.Cookie.set("MSML_TEST.open_bundle.index",activeIndex);
+}
+
+function addBundleMonitor(){
+    window.tab_manager.tabView.subscribe("activeTabChange",bundleTabChange);
+}
+
+YAHOO.util.Event.onDOMReady(addBundleMonitor);
+
+    jq(window).load(function(){
+        // if the \'phantom\'/\'disabled\' tab is there, wrangle the tabs
+        if (!jq(\'#search_tabs\').find(\'li\').not(\'.disabled\').length){
+            wrangleTabs(\'#search_tabs\',true);
+        }
+    });
+
+    </script>
+
+\t\t\t\t   </TD>
+  </TR>
+ </TABLE>
+ <DIV ID="temp_display"></DIV>
+</DIV>
+
+                <!--END SCREEN CONTENT -->
+            </div>
+        </td>
+    </tr>
+    <tr id="DefaultBottomTR">
+        <td valign="bottom"  colspan="2" >
+            
+<div id="mylogger"></div>
+
+<div id="xnat_power" style="">
+    <a target="_blank" href="http://www.xnat.org/" style=""><img src="/images/xnat_power_small.jpg"></a>
+</div>
+
+\t\t
+        </td>
+    </tr>
+</table>
+
+
+<!-- path: xnat-templates/navigations/htmlClose -->\r
+</div><!-- /page_wrapper -->\r
+<script type="text/javascript" src="/scripts/footer.js"></script>\r
+</body>\r
+</html>
+
+
