@@ -91,7 +91,7 @@ class XNAT(object):
 
 
 
-xnat = XNAT("https://xnat.sfb125.de", "weigl", "ReiRuy86")
+xnat = XNAT("https://xnat.sfb125.de", "weigl", "DummyEntry")
 
 #pprint(xnat.get_users())
 #pprint(xnat.get_projects(owner=True))
