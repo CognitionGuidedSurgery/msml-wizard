@@ -73,9 +73,29 @@ class FileManagement(Resource):
         pth = request.form['name']
         return delete_file(pth)
 
-def create_blueprint():
-    filemgmt = Blueprint()
+from .xnatbinding import XNAT
 
-    return filemgmt
+class XNATFile(Resource):
+    def get(self):
+        tmpfile = path("/tmp/xnat.json")
+
+        if not tmpfile.exists():
+
+            xnat = XNAT(c.XNAT_URL, c.XNAT_USER, c.XNAT_PASSWORD)
+            data =  xnat.get_data()
 
 
+            with tmpfile.open('w') as fp:
+                json.dump(data, fp)
+        else:
+            with tmpfile.open() as fp:
+                data = json.load(fp)
+
+        print request.headers
+
+        if request.headers['content-type'] == 'text/html' or request.args.get('html', False):
+            resp = make_response(render_template('xnat-tree.html', data = data))
+            resp.headers['content-type'] = 'text/html'
+            return resp
+
+        return data

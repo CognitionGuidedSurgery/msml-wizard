@@ -16,7 +16,7 @@ import msml_wizard.config as config
 from msml_wizard.formmgmt import *
 from flask_debugtoolbar import DebugToolbarExtension
 
-from msml_wizard.filemgmt import FileManagement
+from msml_wizard.filemgmt import FileManagement, XNATFile
 
 
 app = Flask(__name__)
@@ -61,6 +61,7 @@ class Generate(Resource):
 
 api.add_resource(Generate, '/api/generate/<string:name>')
 api.add_resource(FileManagement, '/api/file')
+api.add_resource(XNATFile, '/api/xnat')
 
 class Wizard(Resource):
     def get(self):
