@@ -48,6 +48,9 @@ class Wizard(object):
         self.meta = json.loads(read(loc / 'meta.json'))
 
         self.name = self.meta['name']
+        self.label = self.meta['label']
+
+
         self.version = self.meta['version']
         self.key = str(self.location.basename())
 
@@ -64,7 +67,7 @@ class Wizard(object):
 
     @property
     def html_content(self):
-        bldr = msml_wizard.wzbuilder.WizardHtmlBuilder(self.location.basename())
+        bldr = msml_wizard.wzbuilder.WizardHtmlBuilder(self)
         bldr.build_html_form(self.wizard_filename)
         self.constraints = bldr.constraints
         return bldr.html

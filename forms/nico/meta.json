@@ -1,5 +1,6 @@
 {
-	"name"   : "Nico's Example",
+    "name": "nico",
+	"label"   : "Nico's Example",
 	"version": "0.1",
 	"css"    : "style.css",
 	"template" : "msml.tpl.xml",

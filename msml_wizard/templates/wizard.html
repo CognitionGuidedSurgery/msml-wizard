@@ -2,7 +2,7 @@
 
 {% block content %}
         {% autoescape False %}
-        {{html_content}}
+{{html_content}}
 
 
 
@@ -51,23 +51,60 @@
     </div>
 </div>
 
-        <script>
-            var constraints = [
-                {% for id, pred in constraints.iteritems() %}
-                    [{{pred}}, "{{id}}"],
-                {%endfor%}
-            ];
 
-            var wizard_name = "{{wizard_name}}";
+<!-- Save Template as Dialog -->
+<div class="modal fade" id="save-template-modal" tabindex="-1" role="dialog" aria-labelledby="ls" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Save As…</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal" action="#" id="file-upload-form">
+                    <div class="form-group">
+                        <label for="template_name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="template_name" id="template_name"/>
+                        </div>
+                    </div>
 
-            $(function () {
-             $("input, select, .ui-slider").change(evalConstraints);
-             evalConstraints();
-                //$('form').on('submit', submit_wizard);
-            });
-        </script>
-        {% endautoescape %}
+                    <div class="form-group">
+                        <label for="template_description" class="col-sm-2 control-label">Category</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="text" name="template_description" id="template_description"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-8">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer clearfix" style="clear:both; margin-top:6em;">
+                <button class="btn btn-default btn-primary" data-dismiss="modal" id="submit-save-as-template">
+                    <span class="glyphicon glyphicon-save"></span> Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
+<script>
+    var constraints = [
+    {% for id, pred in constraints.iteritems() %}
+    [{{pred}}, "{{id}}"],
+    {%endfor%}
+    ];
+
+    var wizard_name = "{{wizard_name}}";
+
+    $(function () {
+        $("input, select, .ui-slider").change(evalConstraints);
+        evalConstraints();
+        //$('form').on('submit', submit_wizard);
+    });
+</script>
+{% endautoescape %}
 {%endblock%}

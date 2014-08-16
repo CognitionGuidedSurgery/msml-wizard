@@ -121,7 +121,6 @@
                    id="all" enable="{alala} == 'yes'"/>
     </formpage>
 
-<!--
     <validation>
         if( isChecked({organ_liver}) )
         {
@@ -129,5 +128,4 @@
 
         }
     </validation>
--->
 </wizard>

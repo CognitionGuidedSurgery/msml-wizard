@@ -30,7 +30,11 @@ repository = WizardRepository(config.FORMS_DIRECTORY)
 
 @app.route("/", endpoint='list')
 def wizard_catalog():
-    return render_template("index.html", repository = repository)
+    saved_forms = config.FORM_STORAGE
+    with open(saved_forms) as fp:
+        data = json.load(fp)
+
+    return render_template("index.html", repository = repository, storage = data)
 
 @app.route("/w/<string:name>", endpoint='wizard')
 def wizard_display(name):
@@ -59,8 +63,47 @@ class Generate(Resource):
         return send_file(filename, "text/xml", True)
 
 
+
+class Storage(Resource):
+    def _get_content(self):
+        try:
+            with open(config.FORM_STORAGE) as fp:
+                data = json.load(fp)
+        except:
+            data = {}
+        return data
+
+    def post(self):
+        data = self._get_content()
+        wzname = request.form['__wizard_name__'];
+        name = request.form['__name__'];
+
+        if wzname not in data:
+            data[wzname] = {}
+
+
+        data[wzname][name] = dict(request.form.iteritems())
+
+        with open(config.FORM_STORAGE, 'w') as fp:
+            json.dump(data, fp)
+
+    def get(self):
+        template_name = request.args.get('template_name', False)
+        data = self._get_content()
+
+        if template_name:
+            for values in data.values():
+                if template_name in values:
+                    return values[template_name]
+        return data
+
+
+
+
 api.add_resource(Generate, '/api/generate/<string:name>')
 api.add_resource(FileManagement, '/api/file')
+api.add_resource(Storage, '/api/templates')
+
 api.add_resource(XNATFile, '/api/xnat')
 
 class Wizard(Resource):

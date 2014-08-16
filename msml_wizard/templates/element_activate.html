@@ -4,5 +4,8 @@
             <input type="checkbox" name="{{id}}" id="{{id}}" value="1">
             {{label}}
         </label>
+        {% if helpblock %}
+        <p class="help-block">{{helpblock}}</p>
+        {% endif %}
     </div>
 </div>

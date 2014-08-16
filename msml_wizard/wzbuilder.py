@@ -29,13 +29,14 @@ from itertools import starmap
 
 
 class WizardHtmlBuilder(object):
-    def __init__(self, name):
+    def __init__(self, wizard):
         self._html = StringIO()
         self._js = StringIO()
         self.env = Environment(loader=PackageLoader(__name__))
         self._constraints = defaultdict(list)
         self._fields = []
-        self.name = name
+        self._wizard = wizard
+
 
     @property
     def html(self):
@@ -81,12 +82,21 @@ class WizardHtmlBuilder(object):
         return getattr(self, e.tag)(e)
 
     def wizard(self, e):
-        self._html.write("<form role='form' action='/api/generate/%s' method='post'>" % self.name)
+        self._html.write("<form role='form' action='/api/generate/%s' method='post' id='wizard'>" % self._wizard.name)
+        self._html.write("<input type='hidden' name='__wizard_name__' value='%s'>" % self._wizard.name)
+        self._html.write("<input type='hidden' name='__wizard_version__' value='%s'>" % self._wizard.version)
+
+
         self._html.write("<h1>%s</h1>" % e.get('title', ""))
         for c in e.iterchildren():
             self.dispatch(c)
 
-        self._html.write('<input type="submit" class="btn-primary btn" value="Generate">')
+        self._html.write('''
+        <div class="btn-group ">
+            <button id="save-as-template" class="btn-info btn"> Save as Template</button>
+            <button type="submit" class="btn-primary btn">Generate</button>
+        </div>
+        ''')
         self._html.write("</form>")
 
     def textpage(self, e):
@@ -203,6 +213,9 @@ class WizardHtmlBuilder(object):
         self._html.write("""
             <p id="%s" class="content-box %s">%s</p>
         """ % (i, c, xml.text))
+
+    def validation(self, xml):
+        pass
 
 
 def generate_name(prefix="id_"):

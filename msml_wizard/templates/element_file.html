@@ -26,4 +26,7 @@
             $(function() {load_files($('#{{id}}'));});
         </script>
     </div>
+            {% if helpblock %}
+        <p class="help-block">{{helpblock}}</p>
+        {% endif %}
 </div>

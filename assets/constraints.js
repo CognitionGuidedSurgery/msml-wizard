@@ -42,31 +42,3 @@ function evalConstraints() {
     });
 }
 
-
-function submit_wizard() {
-    $.ajax({
-        type: "POST",
-        url: "/api/generate/" + wizard_name,
-        data: $('form').serialize(),
-        success: function (response, status, request) {
-            var disp = request.getResponseHeader('Content-Disposition');
-            if (disp && disp.search('attachment') != -1) {
-                var type = request.getResponseHeader('Content-Type');
-                var blob = new Blob([response], { type: type });
-
-                if (typeof window.navigator.msSaveBlob !== 'undefined') {
-                    // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
-                    window.navigator.msSaveBlob(blob);
-                } else {
-                    var URL = window.URL || window.webkitURL;
-                    var downloadUrl = URL.createObjectURL(blob);
-                    window.location = downloadUrl;
-                }
-            }
-        },
-        error: function (response) {
-            alert("error");
-        }
-    });
-    return false;
-}

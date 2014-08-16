@@ -1,4 +1,7 @@
- <div class="form-group">
-            <label for="{{name}}">{{label}}</label>
-            <input name="{{name}}" id="{{name}}" class="form-control" type="text"/>
+<div class="form-group">
+    <label for="{{name}}">{{label}}</label>
+    <input name="{{name}}" id="{{name}}" class="form-control" type="text"/>
+    {% if helpblock %}
+    <p class="help-block">{{helpblock}}</p>
+    {% endif %}
 </div>

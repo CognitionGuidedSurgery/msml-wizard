@@ -107,7 +107,15 @@ class XNAT(object):
     def get_project_subject_resources(self, projectId, subjectId):
         url = self._host + '/data/archive/projects/{p}/subjects/{s}/resources'.format(p=projectId, s=subjectId)
         resp = self.session.get(url)
-        return _handle(resp)
+        aids = map(lambda x: x['xnat_abstractresource_id'], _handle(resp))
+        files = []
+        for aid in aids:
+            url = self._host + '/data/archive/projects/{p}/subjects/{s}/resources/{i}'\
+                .format(p=projectId, s=subjectId, i = aid)
+            resp = _handle(self.session.get(url))
+            files+=resp
+        return files
+
 
     def get_project_resource_files(self, projectId, resourceId):
         url = self._host + '/data/archive/projects/{p}/resources/{s}'.format(p=projectId, s=resourceId)

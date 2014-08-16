@@ -1,54 +1,60 @@
 <div class="tree well">
     <ul>
-        {% for project in data %}
-        <li><span class="project-name">{{project.name}}</span>
-            <span class="project-description">{{project.description}}</span>
+        <li><span class="project-resource resource-title">
+                    <i class="icon-folder-open"></i>
+                    XNAT</span>
             <ul>
-                {% if project['_resources'] %}
-                <li><span class="project-resource resource-title">
+                {% for project in data %}
+                <li><span class="project-name">{{project.name}}</span>
+                    <!-- <span class="project-description">{{project.description}}</span> -->
+                    <ul>
+                        {% if project['_resources'] %}
+                        <li><span class="project-resource resource-title">
                     <i class="icon-folder-open"></i>
                     Resources:</span>
-                    <ul>
-                        {% for resource in project['_resources'] %}
-                        <li>{{resource.label}}
-                            {{resource}}
                             <ul>
-                                {% for file in resource['_files'] %}
-                                <li>{{file.label}}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endif %}
-                {% if project['_subjects'] %}
-                <li><span><i class="icon-folder-open"></i> Subjects:</span>
-                    <ul>
-                        {% for subject in project['_subjects'] %}
-                        <li>
-                            <span><i class="icon-minus-sign"></i>
-                                {{subject.ID}}
-                                </span>
-                            <ul>
-                                <li><span class="subject-resource resource-title">Resources:</span>
+                                {% for resource in project['_resources'] %}
+                                <li>{{resource.label}}
+                                    {{resource}}
                                     <ul>
-                                        {% for resource in subject['_resources'] %}
-                                        {% if resource['label'] != ""%}
-                                        <li>{{resource.label}}</li>
-                                        {% endif %}
+                                        {% for file in resource['_files'] %}
+                                        <li>{{file.label}}</li>
                                         {% endfor %}
                                     </ul>
                                 </li>
-
+                                {% endfor %}
                             </ul>
                         </li>
-                        {% endfor %}
+                        {% endif %}
+                        {% if project['_subjects'] %}
+                        <li><span><i class="icon-folder-open"></i> Subjects:</span>
+                            <ul>
+                                {% for subject in project['_subjects'] %}
+                                <li>
+                            <span><i class="icon-minus-sign"></i>
+                                {{subject.ID}}
+                                </span>
+                                    <ul>
+                                        <li><span class="subject-resource resource-title">Resources:</span>
+                                            <ul>
+                                                {% for resource in subject['_resources'] %}
+                                                {% if resource['name'] != ""%}
+                                                <li>{{resource.name}}</li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
                     </ul>
                 </li>
-                {% endif %}
+                {% endfor %}
             </ul>
         </li>
-        {% endfor %}
     </ul>
 </div>
