@@ -30,11 +30,7 @@ repository = WizardRepository(config.FORMS_DIRECTORY)
 
 @app.route("/", endpoint='list')
 def wizard_catalog():
-    saved_forms = config.FORM_STORAGE
-    with open(saved_forms) as fp:
-        data = json.load(fp)
-
-    return render_template("index.html", repository = repository, storage = data)
+    return render_template("index.html", repository = repository, storage = Storage()._get_content())
 
 @app.route("/w/<string:name>", endpoint='wizard')
 def wizard_display(name):

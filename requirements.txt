@@ -8,3 +8,5 @@ path.py
 BeautifulSoup
 Flask-DebugToolbar
 Flask-Assets
+path.py
+Jinja2
